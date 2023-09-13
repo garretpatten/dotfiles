@@ -50,6 +50,7 @@ source $ZSH/oh-my-zsh.sh
 #
 # Linux
 # alias cat="bat -p"
+alias fp="ps aux | grep"
 alias home="clear && echo '' && neofetch && task list"
 alias ls="exa"
 alias neo="neofetch"
