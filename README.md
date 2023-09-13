@@ -1,2 +1,10 @@
-# template
-Template repository for projects
+# Config Files
+
+## Taswarrior
+- TODO
+
+## Vim
+- TODO
+
+## Z-Shell
+- TODO
