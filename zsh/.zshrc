@@ -1,6 +1,3 @@
-# .zshrc
-
-# If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/bin:/usr/local/bin:/usr/.local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
@@ -20,9 +17,6 @@ ZSH_THEME="robbyrussell"
 # zstyle ':omz:update' mode disabled  # disable automatic updates
 # zstyle ':omz:update' mode auto      # update automatically without asking
 zstyle ':omz:update' mode reminder  # just remind me to update when it's time
-
-# Uncomment the following line to change how often to auto-update (in days).
-# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -49,15 +43,14 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 #
 # Linux
-# alias cat="bat -p"
 alias fp="ps aux | grep"
 alias home="clear && echo '' && neofetch && task list"
 alias ls="exa"
 alias neo="neofetch"
 alias scan="sudo freshclam && sudo clamscan -i -r"
 # alias update="brew upgrade && brew update && brew autoremove"
-# alias update="sudo apt update -y && sudo apt upgrade -y && sudo flatpak update -y && sudo apt autoremove -y"
-# alias update="sudo dnf update -y && sudo apt dnf upgrade -y && sudo flakptak udpate -y && sudo dnf autoremove -y"
+# alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
+# alias update="sudo dnf upgrade -y && sudo apt dnf update -y && sudo flakptak update -y && sudo dnf autoremove -y"
 # alias update="sudo pacman -Syu && yay -Sc"
 alias status="clear && neofetch && task calendar && task list && protonvpn-cli status"
 #
@@ -70,5 +63,5 @@ alias zshconfig="nano ~/.zshrc"
 
 # Environment Variables
 #
-# TODO: Get 1password export pattern with item ID missing
-export GITHUB_PERSONAL_TOKEN="op://todo"
+# TODO: Update Item ID and uncomment token export
+# export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<Item ID>/token)"
