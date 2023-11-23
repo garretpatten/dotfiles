@@ -1,24 +1,23 @@
 {
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.detectIndentation": true,
-    "editor.fontSize": 16,
-    "editor.minimap.enabled": false,
-    "editor.insertSpaces": false,
     "editor.cursorBlinking": "expand",
     "editor.cursorSmoothCaretAnimation": "on",
+    "editor.detectIndentation": false,
+    "editor.fontSize": 16,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.insertSpaces": false,
     "editor.fontFamily": "Fira Code",
     "editor.fontLigatures": true,
     "editor.fontWeight": "500",
-    "editor.inlineSuggest.suppressSuggestions": true,
+    "editor.minimap.enabled": false,
     "editor.renderWhitespace": "all",
     "editor.tabSize": 4,
-    "explorer.compactFolders": false,
     "explorer.autoReveal": false,
-    "explorer.openEditors.visible": 0,
-    "extensions.ignoreRecommendations": true,
+    "explorer.compactFolders": false,
+    "explorer.openEditors.visible": 1,
     "files.associations": {
         "*.component": "html",
-        "*.cls": "java",
+        "*.cls": "apex",
         "*.page": "html",
         "*.app": "xml",
         "*.auradoc": "xml"
@@ -39,15 +38,9 @@
     },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
-    "gitlens.advanced.messages": {
-        "suppressShowKeyBindingsNotice": true
-    },
-    "merge-conflict.autoNavigateNextConflict.enabled": true,
     "problems.decorations.enabled": false,
-    "redhat.telemetry.enabled": false,
     "search.quickOpen.includeHistory": false,
-    "security.workspace.trust.untrustedFiles": "open",
-    "semgrep.metrics.enabled": false,
+    "merge-conflict.autoNavigateNextConflict.enabled": true,
     "workbench.settings.editor": "json",
     "workbench.colorCustomizations": {
         "editor.selectionBackground": "#6f42c1",
@@ -73,9 +66,10 @@
         "menubar.selectionForeground": "#00BCD4"
     },
     "workbench.editor.enablePreviewFromQuickOpen": false,
-    "workbench.colorTheme": "Atlantic Night",
     "workbench.sideBar.location": "right",
-    "[python]": {
-        "editor.formatOnType": true
-    }
+    "security.workspace.trust.untrustedFiles": "open",
+    "workbench.iconTheme": "material-icon-theme",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false
 }
