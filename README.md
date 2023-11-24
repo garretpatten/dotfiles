@@ -8,7 +8,7 @@ This repository provides a centralized submodule to hold configuration files. Th
 ## Vim
 - `~/.vimrc`: Vim configuration file that sets editor preferences.
 
-## VS Code Settings
+## VS Code
 - `settings.json`: VS Code JSON settings that sets ediro preferenecs and is stored at a path determined by the operating system.
 
 ## Z-Shell
