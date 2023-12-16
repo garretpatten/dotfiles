@@ -49,7 +49,7 @@ alias ls="exa"
 alias neo="neofetch"
 alias scan="sudo freshclam && sudo clamscan -i -r"
 # TODO: Remove unneeded update commands
-# alias update="brew upgrade && brew update && brew autoremove"
+# alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
 # alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
 # alias update="sudo dnf upgrade -y && sudo apt dnf update -y && sudo flakptak update -y && sudo dnf autoremove -y"
 # alias update="sudo pacman -Syu && yay -Sc"
