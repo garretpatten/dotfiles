@@ -5,6 +5,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="avit"
+# ZSH_THEME="bureau"
 # ZSH_THEME="cloud"
 # ZSH_THEME="gozilla"
 # ZSH_THEME="rixius"
