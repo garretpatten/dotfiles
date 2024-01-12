@@ -43,7 +43,8 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 #
-# Linux
+# System
+# alias bat="batcat"
 alias fp="ps aux | grep"
 alias home="clear && echo '' && neofetch && task list"
 alias ls="exa"
