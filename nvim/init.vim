@@ -6,7 +6,6 @@ set cc=80
 set cursorline
 set foldenable
 set guifont=Fira\ Code:h12
-set mouse=a
 set nowrap
 set re=0
 set showcmd
