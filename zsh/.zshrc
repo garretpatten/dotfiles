@@ -44,6 +44,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Aliases
 #
+# Development
+alias ups="git submodule update --remote --recursive && git add . && git commit -m 'Update submodules' && git push origin"
+#
 # System
 # TODO: Remove or uncomment bat alias
 # alias bat="batcat"
