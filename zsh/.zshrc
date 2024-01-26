@@ -7,10 +7,10 @@ export ZSH="$HOME/.oh-my-zsh"
 # ZSH_THEME="avit"
 # ZSH_THEME="bureau"
 # ZSH_THEME="cloud"
-# ZSH_THEME="fino"
+ZSH_THEME="fino"
 # ZSH_THEME="gozilla"
 # ZSH_THEME="rixius"
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -45,18 +45,19 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 #
 # System
+# TODO: Remove or uncomment bat alias
 # alias bat="batcat"
 alias fp="ps aux | grep"
 alias home="clear && echo '' && neofetch && task list"
 alias ls="exa"
 alias neo="neofetch"
 alias scan="sudo freshclam && sudo clamscan -i -r"
+alias status="clear && neofetch && task calendar && task list && protonvpn-cli status"
 # TODO: Remove unneeded update commands
 # alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
 # alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
 # alias update="sudo dnf upgrade -y && sudo apt dnf update -y && sudo flakptak update -y && sudo dnf autoremove -y"
 # alias update="sudo pacman -Syu && yay -Sc"
-alias status="clear && neofetch && task calendar && task list && protonvpn-cli status"
 #
 # Taskwarrior
 alias tw="clear && task calendar && task list"
