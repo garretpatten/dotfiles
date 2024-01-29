@@ -71,5 +71,9 @@ alias zshconfig="nano ~/.zshrc"
 
 # Environment Variables
 #
+# Default Editor
+export NVIM=nvim
+export EDITOR="$NVIM"
+# GitHub Token
 # TODO: Update Item ID and uncomment token export
 # export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<Item ID>/token)"
