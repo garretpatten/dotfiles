@@ -46,7 +46,7 @@ set softtabstop=4                " Set insert mode tab size to 4
 set tabstop=4                    " Set tab size to 4
 
 " Plugins -----------------------------------------------------
-" lua << EOF
+lua << EOF
 require('packer').startup(function()
   use 'wbthomason/packer.nvim'  -- Packer can manage itself
 end)
