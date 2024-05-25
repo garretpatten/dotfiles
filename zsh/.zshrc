@@ -50,12 +50,13 @@ alias ups="git submodule update --remote --recursive && git add . && git commit 
 # System
 # TODO: Remove or uncomment bat alias
 # alias bat="batcat"
+alias ff="fastfetch"
 alias fp="ps aux | grep"
-alias home="clear && echo '' && neofetch && task list"
+alias home="clear && echo '' && fastfetch && task list"
 alias ls="exa"
-alias neo="neofetch"
+alias neo="clear && echo '' && fastfetch"
 alias scan="sudo freshclam && sudo clamscan -i -r"
-alias status="clear && neofetch && task calendar && task list && protonvpn-cli status"
+alias status="clear && fastfetch && task calendar && task list && protonvpn-cli status"
 # TODO: Remove unneeded update commands
 # alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
 # alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
