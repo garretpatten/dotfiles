@@ -61,7 +61,7 @@ alias status="clear && fastfetch && task calendar && task list && protonvpn-cli 
 # alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
 # alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
 # alias update="sudo dnf upgrade -y && sudo apt dnf update -y && sudo flakptak update -y && sudo dnf autoremove -y"
-# alias update="sudo pacman -Syu && yay -Sc"
+# alias update="sudo pacman -Syu --noconfirm && yay -Sc --noconfirm"
 #
 # Taskwarrior
 alias tw="clear && task calendar && task list"
