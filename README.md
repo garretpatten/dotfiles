@@ -1,4 +1,4 @@
-# dotfiles
+# My dotfiles
 This repository provides a submodule to hold my dotfiles; this submodule is consumed as part of automated setup scripts for my development environments.
 
 ## Neovim
