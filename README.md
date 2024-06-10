@@ -5,7 +5,7 @@ This repository provides a submodule to hold my dotfiles; this submodule is cons
 - `~/.config/nvim/init.vim`: Neovim configuration file that sets editor preferences
     - This neovim setup requires the Packer package manager. See [Install Packer](https://github.com/wbthomason/packer.nvim?tab=readme-ov-file#quickstart) for more details.
 
-## Taswarrior
+## Taskwarrior
 - `~/.taskrc`: Taskwarrior configuration file that sets ordering, priority, and theme.
 - `/.task/themes/*.theme`: Custom themes for Taskwarrior.
 
