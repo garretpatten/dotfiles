@@ -3,6 +3,7 @@ This repository provides a submodule to hold my dotfiles; this submodule is cons
 
 ## Alacritty
 - `~/.config/alacritty/alacritty.toml`: Alacritty configuration file that sets shell preferences
+    - See [Alacritty configuration](https://alacritty.org/config-alacritty.html) for more details.
 
 ## Neovim
 - `~/.config/nvim/init.vim`: Neovim configuration file that sets editor preferences
