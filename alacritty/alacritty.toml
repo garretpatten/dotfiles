@@ -20,5 +20,5 @@ option_as_alt = "Both"
 startup_mode = "Maximized"
 
 [font]
-normal.family = "MesloLGS Nerd Font"
+normal.family = "MesloLGS NF"
 size = 16
