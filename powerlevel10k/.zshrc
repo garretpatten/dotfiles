@@ -63,4 +63,4 @@ alias tw="clear && task calendar && task list"
 export NVIM=nvim
 export EDITOR="$NVIM"
 # GitHub Token
-export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<item>/token)"
+export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<Item ID>/token)"
