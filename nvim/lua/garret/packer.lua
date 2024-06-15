@@ -14,15 +14,14 @@ return require('packer').startup(function(use)
 
     -- Fuzzy Find
     use { "nvim-telescope/telescope-fzf-native.nvim", run = "make" }
-    require("telescope").load_extension("fzf")
 
     -- Tree Sitter
     use {
-	    'nvim-treesitter/nvim-treesitter',
-	    run = function()
-		    local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-		    ts_update()
-	    end,
+        'nvim-treesitter/nvim-treesitter',
+        run = function()
+            local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+            ts_update()
+        end,
     }
     use('nvim-treesitter/playground')
     use('mbbill/undotree')
@@ -42,11 +41,11 @@ return require('packer').startup(function(use)
 
     -- Alpha Nvim
     use {
-	    'goolord/alpha-nvim',
-	    requires = { 'nvim-tree/nvim-web-devicons' },
-	    config = function ()
-		    require'alpha'.setup(require'alpha.themes.startify'.config)
-	    end
+        'goolord/alpha-nvim',
+        requires = { 'nvim-tree/nvim-web-devicons' },
+        config = function ()
+            require'alpha'.setup(require'alpha.themes.startify'.config)
+        end
     }
 
     -- Lua Line
@@ -54,19 +53,16 @@ return require('packer').startup(function(use)
         "nvim-lualine/lualine.nvim",
         requires = { "nvim-tree/nvim-web-devicons", opt = true }
     }
-    require("lualine").setup()
 
     -- Everforest Theme
     use({ 
-	    "neanias/everforest-nvim",
-	    as = 'everforest',
-	    config = function()
-		    vim.cmd('colorscheme everforest')
-	    end
+        "neanias/everforest-nvim",
+        as = 'everforest',
+        config = function()
+            vim.cmd('colorscheme everforest')
+        end
     })
-    require("everforest").load()
 
     -- Nvim Tree
     use "nvim-tree/nvim-tree.lua"
-    require ("nvim-tree").setup()
 end)
