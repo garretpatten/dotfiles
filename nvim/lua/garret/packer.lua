@@ -39,6 +39,9 @@ return require('packer').startup(function(use)
     -- Nvim Visual Multi (Visual mode, ctrl + n)
     use "mg979/vim-visual-multi"
 
+    -- Vim Commentary
+    use "tpope/vim-commentary"
+
     -- Alpha Nvim
     use {
         'goolord/alpha-nvim',
@@ -62,7 +65,4 @@ return require('packer').startup(function(use)
             vim.cmd('colorscheme everforest')
         end
     })
-
-    -- Nvim Tree
-    use "nvim-tree/nvim-tree.lua"
 end)
