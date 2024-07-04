@@ -27,6 +27,7 @@ set encoding=utf-8
 set nocompatible
 
 " Navigation -----------------------------------------------------
+set mouse=0
 set relativenumber
 
 " Searching -----------------------------------------------------
@@ -41,5 +42,3 @@ set expandtab
 set shiftwidth=4
 set softtabstop=4
 set tabstop=4
-
-" Plugins -----------------------------------------------------
