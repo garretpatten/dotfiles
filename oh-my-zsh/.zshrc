@@ -45,6 +45,7 @@ source $ZSH/oh-my-zsh.sh
 # Aliases
 #
 # Development
+alias sub="git submodule init && git submodule update --remote --recursive"
 alias ups="git submodule update --remote --recursive && git add . && git commit -m 'Update submodules' && git push origin"
 #
 # System
