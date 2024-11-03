@@ -52,6 +52,7 @@ alias ups="git submodule update --remote --recursive && git add . && git commit 
 alias ff="fastfetch"
 alias fp="ps aux | grep"
 alias home="cd && clear && echo '' && fastfetch && ls"
+alias kanye="curl -s https://api.kanye.rest | jq '.quote'"
 alias ls="eza --color=always --icons=always"
 alias lls="eza -la"
 alias neo="clear && echo '' && fastfetch"
