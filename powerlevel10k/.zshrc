@@ -50,6 +50,7 @@ alias lls="eza -la"
 alias neo="clear && echo '' && fastfetch"
 alias scan="sudo freshclam && sudo clamscan -i -r"
 alias status="protonvpn-cli status"
+alias ts="bash $HOME/Projects/tmux-scripts/tmux-setup.sh"
 # TODO: Remove unneeded update commands
 # alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
 # alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
