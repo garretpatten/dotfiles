@@ -27,8 +27,12 @@ eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/emodipt-extend
 
 ### Plugins ###
 #
+# Arch
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Mac
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### History Setup ###
 #

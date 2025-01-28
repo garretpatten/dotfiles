@@ -15,11 +15,15 @@ source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
 #
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-# TODO: Remove unneeded source commands
-# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+### Plugins ###
+# 
+# Arch
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+#
+# Mac
+# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 #
 # History setup
 HISTFILE=$HOME/.zhistory
