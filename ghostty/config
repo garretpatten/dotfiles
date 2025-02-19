@@ -1,0 +1,53 @@
+### Appearance ###
+
+background = 000000
+background-opacity = 0.8
+background-blur = true
+cursor-invert-fg-bg = true
+cursor-style = bar
+cursor-style-blink = false
+theme = Everforest Dark - Hard
+# theme = tokyonight
+
+### Auto Update ###
+
+auto-update = download
+auto-update-channel = stable
+
+### Environment ###
+term = xterm-256color
+
+### Font ###
+
+font-family = MesloLGS Nerd Font
+font-size = 16
+font-thicken = true
+
+### Integrations ###
+
+# shell-integration-features = no cursor,no sudo,title
+
+### Mac OS ###
+
+macos-option-as-alt = true
+macos-titlebar-proxy-icon = hidden
+# macos-titlebar-style = hidden
+macos-titlebar-style = tabs
+
+### Mouse ###
+
+copy-on-select = true
+mouse-hide-while-typing = true
+
+### Window ###
+
+window-decoration = auto
+window-padding-balance = true
+window-padding-x = 10
+window-padding-y = 10
+
+### Other ###
+
+command = /bin/zsh
+working-directory = home
+window-inherit-working-directory = false
