@@ -83,4 +83,4 @@ export NVIM=nvim
 export EDITOR="$NVIM"
 # GitHub Token
 # TODO: Update Item ID and uncomment token export
-# export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<Item ID>/token)"
+export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/v2qupa4sbtlhaigaljzd2t4xei/token)"

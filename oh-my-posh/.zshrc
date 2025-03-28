@@ -33,7 +33,11 @@ source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 # Mac
 # source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
+#
+# Ubuntu
+#
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 ### History Setup ###
 #
 HISTFILE=$HOME/.zhistory
@@ -80,4 +84,4 @@ alias tw="clear && task calendar && task list"
 export NVIM=nvim
 export EDITOR="$NVIM"
 # GitHub Token
-export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/<Item ID>/token)"
+export GITHUB_PERSONAL_TOKEN="$(op read op://Personal/v2qupa4sbtlhaigaljzd2t4xei/token)"
