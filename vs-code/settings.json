@@ -1,6 +1,7 @@
 {
     "diffEditor.ignoreTrimWhitespace": false,
-    "editor.cursorBlinking": "expand",
+    "editor.wordWrapColumn": 80,
+    "editor.cursorBlinking": "solid",
     "editor.cursorSmoothCaretAnimation": "on",
     "editor.detectIndentation": false,
     "editor.fontSize": 16,
