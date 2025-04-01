@@ -55,3 +55,11 @@ This repository holds the dotfiles I use for my personal development environment
     - For more details on the `oh-my-zsh` installation, see the [oh-my-zsh installation docs](https://ohmyz.sh/#install).
 - `/deprecated/powerlevel10k/.zshrc`: Z-Shell runtime configuration that configures aliases, environment variables, key bindings, and plugins.
     - For more details on the (deprecated) `powerlevel10k` configuration, see the [powerlevel10k GitHub repository](https://github.com/romkatv/powerlevel10k).
+
+## Maintainers
+
+[@garretpatten](https://github.com/garretpatten/)
+
+## License
+
+This project is licensed under the [MIT License](./LICENSE).
