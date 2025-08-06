@@ -1,6 +1,6 @@
 require("everforest").load()
 
-function ColorMyPencils(color)
+function Colors(color)
     color = color or "everforest"
     vim.cmd.colorscheme(color)
 
@@ -8,4 +8,4 @@ function ColorMyPencils(color)
     vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
-ColorMyPencils()
+Colors()
