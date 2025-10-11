@@ -85,10 +85,10 @@ alias scan="sudo freshclam && sudo clamscan -i -r"
 alias status="protonvpn-cli status"
 alias ts="bash $HOME/Projects/tmux-scripts/tmux-setup.sh"
 # TODO: Remove unneeded update aliases
-# alias update="brew upgrade && brew update && brew autoremove && brew cleanup"
-# alias update="sudo apt upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y"
-# alias update="sudo dnf upgrade -y && sudo apt dnf update -y && sudo flakptak update -y && sudo dnf autoremove -y"
-# alias update="sudo pacman -Syu --noconfirm && yay -Sc --noconfirm"
+# alias update="brew upgrade && brew update && brew autoremove && brew cleanup -s"
+# alias update="sudo apt upgrade -y && sudo apt full-upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y && sudo apt autoclean -y"
+# alias update="sudo dnf upgrade --refresh -y && sudo flatpak update -y && sudo dnf autoremove -y && sudo dnf clean all"
+# alias update="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && sudo pacman -Rns $(pacman -Qtdq) --noconfirm"
 alias vpn="protonvpn-cli connect"
 
 ### Environment Variables ###
