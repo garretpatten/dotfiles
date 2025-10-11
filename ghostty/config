@@ -1,53 +1,144 @@
-### Appearance ###
+# =============================================================================
+# Ghostty Terminal Configuration
+# =============================================================================
+# A fast, feature-rich, GPU-accelerated terminal emulator
+# Documentation: https://mitchellh.com/ghostty/docs
 
+# =============================================================================
+# Appearance & Theme
+# =============================================================================
+# Background color (hex without #)
 background = 000000
+
+# Background transparency (0.0 = fully transparent, 1.0 = opaque)
 background-opacity = 0.8
+
+# Background blur effect
 background-blur = true
+
+# Cursor appearance
 cursor-invert-fg-bg = true
 cursor-style = bar
 cursor-style-blink = false
+
+# Color theme
 theme = Everforest Dark - Hard
+# Alternative themes:
 # theme = tokyonight
 
-### Auto Update ###
-
+# =============================================================================
+# Auto Update
+# =============================================================================
+# Automatically download and install updates
 auto-update = download
+
+# Update channel (stable, beta, nightly)
 auto-update-channel = stable
 
-### Environment ###
+# =============================================================================
+# Environment
+# =============================================================================
+# Terminal type for proper color support and compatibility
 term = xterm-256color
 
-### Font ###
-
+# =============================================================================
+# Font Configuration
+# =============================================================================
+# Font family (supports Nerd Fonts for icons)
 font-family = MesloLGS Nerd Font
+
+# Font size in points
 font-size = 16
+
+# Font weight adjustment (thicker strokes)
 font-thicken = true
 
-### Integrations ###
-
+# =============================================================================
+# Shell Integration
+# =============================================================================
+# Features to enable for shell integration
+# Available features: cursor, sudo, title, cwd, shell, git, jobs, open
 # shell-integration-features = no cursor,no sudo,title
 
-### Mac OS ###
-
+# =============================================================================
+# macOS Specific Settings
+# =============================================================================
+# Use Option key as Alt key
 macos-option-as-alt = true
+
+# Hide the proxy icon in the title bar
 macos-titlebar-proxy-icon = hidden
-# macos-titlebar-style = hidden
+
+# Title bar style
+# Options: hidden, tabs, normal
 macos-titlebar-style = tabs
+# Alternative: macos-titlebar-style = hidden
 
-### Mouse ###
-
+# =============================================================================
+# Mouse Behavior
+# =============================================================================
+# Automatically copy selected text to clipboard
 copy-on-select = true
+
+# Hide mouse cursor while typing
 mouse-hide-while-typing = true
 
-### Window ###
-
+# =============================================================================
+# Window Configuration
+# =============================================================================
+# Window decoration style
+# Options: auto, none, full
 window-decoration = auto
+
+# Balance window padding
 window-padding-balance = true
+
+# Window padding (space between content and window edges)
 window-padding-x = 10
 window-padding-y = 10
 
-### Other ###
-
+# =============================================================================
+# Shell & Working Directory
+# =============================================================================
+# Default shell to use
 command = /bin/zsh
+
+# Initial working directory
 working-directory = home
+
+# Whether new windows inherit the working directory of the current window
 window-inherit-working-directory = false
+
+# =============================================================================
+# Performance & Rendering
+# =============================================================================
+# GPU acceleration (enabled by default)
+# gpu-acceleration = true
+
+# =============================================================================
+# Additional Features
+# =============================================================================
+# Enable ligatures for programming fonts
+# font-ligatures = true
+
+# Font weight (100-900)
+# font-weight = 400
+
+# Font weight for bold text
+# font-weight-bold = 700
+
+# =============================================================================
+# Advanced Configuration
+# =============================================================================
+# Custom key bindings can be added here
+# Example:
+# key-bindings = [
+#     "ctrl+shift+c:copy",
+#     "ctrl+shift+v:paste"
+# ]
+
+# Custom environment variables
+# env = [
+#     "TERM=xterm-256color",
+#     "COLORTERM=truecolor"
+# ]

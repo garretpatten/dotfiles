@@ -1,24 +1,154 @@
-general.import = [
+# =============================================================================
+# Alacritty Terminal Configuration
+# =============================================================================
+# A fast, cross-platform, OpenGL terminal emulator
+# Documentation: https://github.com/alacritty/alacritty/blob/master/docs/configuration.md
+
+# =============================================================================
+# Theme Import
+# =============================================================================
+# Import external theme file for consistent color scheme
+import = [
     "~/.config/alacritty/alacritty-theme/themes/everforest-dark.toml"
 ]
 
+# =============================================================================
+# Environment Variables
+# =============================================================================
 [env]
+# Set terminal type for proper color support and compatibility
 TERM = "xterm-256color"
 
+# =============================================================================
+# Window Configuration
+# =============================================================================
 [window]
-padding.x = 10
-padding.y = 10
+# Window padding (space between content and window edges)
+padding = { x = 10, y = 10 }
 
+# Window decorations (title bar, borders, etc.)
+# Options: "Full", "None", "Transparent", "Buttonless"
 decorations = "None"
-# decorations = "Buttonless"
+# Alternative: "Buttonless" for minimal title bar with close button
 
+# Window transparency and effects
 opacity = 0.8
 blur = true
 
+# Option key behavior on macOS
+# Options: "None", "Both", "Left", "Right"
 option_as_alt = "Both"
 
+# Initial window state
 startup_mode = "Maximized"
 
+# =============================================================================
+# Font Configuration
+# =============================================================================
 [font]
-normal.family = "MesloLGS Nerd Font"
+# Primary font family (supports Nerd Fonts for icons)
+normal = { family = "MesloLGS Nerd Font", style = "Regular" }
+bold = { family = "MesloLGS Nerd Font", style = "Bold" }
+italic = { family = "MesloLGS Nerd Font", style = "Italic" }
+bold_italic = { family = "MesloLGS Nerd Font", style = "Bold Italic" }
+
+# Font size in points
 size = 16
+
+# Font offset (useful for fine-tuning vertical alignment)
+offset = { x = 0, y = 0 }
+
+# Glyph offset (useful for fixing rendering issues)
+glyph_offset = { x = 0, y = 0 }
+
+# =============================================================================
+# Cursor Configuration
+# =============================================================================
+[cursor]
+# Cursor style
+# Options: "Block", "Underline", "Beam"
+style = "Block"
+
+# Cursor blinking
+# Options: "Never", "Off", "On", "Always"
+blinking = "On"
+
+# Cursor unfocused style (when window loses focus)
+unfocused_hollow = true
+
+# =============================================================================
+# Scrolling Configuration
+# =============================================================================
+[scrolling]
+# Number of lines to scroll with mouse wheel
+history = 10000
+
+# Multiplier for scrolling speed
+multiplier = 3
+
+# =============================================================================
+# Mouse Configuration
+# =============================================================================
+[mouse]
+# Hide mouse cursor while typing
+hide_when_typing = true
+
+# Double-click selection threshold (in pixels)
+double_click = { threshold = 300 }
+
+# Triple-click selection threshold (in pixels)
+triple_click = { threshold = 300 }
+
+# =============================================================================
+# Selection Configuration
+# =============================================================================
+[selection]
+# Save selection to clipboard
+save_to_clipboard = true
+
+# =============================================================================
+# Keyboard Configuration
+# =============================================================================
+[keyboard]
+# Key repeat settings
+repeat_rate = 25
+repeat_delay = 250
+
+# =============================================================================
+# Bell Configuration
+# =============================================================================
+[bell]
+# Visual bell animation
+animation = "EaseOutExpo"
+duration = 0
+color = "#ffffff"
+
+# =============================================================================
+# Debug Configuration
+# =============================================================================
+[debug]
+# Print all events to stdout
+print_events = false
+
+# Log level
+# Options: "Off", "Error", "Warn", "Info", "Debug", "Trace"
+log_level = "Warn"
+
+# Persistent logging
+persistent_logging = false
+
+# Log file path
+log_file = "/tmp/alacritty.log"
+
+# =============================================================================
+# Performance Configuration
+# =============================================================================
+[performance]
+# Maximum number of lines to keep in memory
+max_memory_usage = 268435456  # 256MB
+
+# =============================================================================
+# Live Config Reload
+# =============================================================================
+# Alacritty can live-reload its configuration whenever the file changes
+# This is enabled by default and doesn't need explicit configuration
