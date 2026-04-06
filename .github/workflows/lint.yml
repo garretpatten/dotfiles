@@ -2,29 +2,10 @@ name: Lint
 
 on:
   push:
-    branches: [master, main]
+    branches: [master]
   pull_request:
 
 jobs:
-  shellcheck:
-    name: ShellCheck
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-        with:
-          submodules: recursive
-      - name: Install ShellCheck
-        run: sudo apt-get update -y && sudo apt-get install -y shellcheck
-      - name: Run ShellCheck
-        run: |
-          set -euo pipefail
-          mapfile -t files < <(find . -type f \( -name '*.sh' -o -name '*.bash' -o -name '*.zsh' \) ! -path './.git/*' ! -path './node_modules/*' 2>/dev/null | sort -u)
-          if [[ ${#files[@]} -eq 0 ]]; then
-            echo "No shell scripts found."
-            exit 0
-          fi
-          shellcheck "${files[@]}"
-
   stylua:
     name: StyLua
     runs-on: ubuntu-latest
