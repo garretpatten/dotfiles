@@ -48,6 +48,6 @@ window-padding-y = 10
 
 ### Other ###
 
-command = /bin/zsh
+command = zsh
 working-directory = home
 window-inherit-working-directory = false

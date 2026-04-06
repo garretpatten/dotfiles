@@ -2,33 +2,37 @@
 
 Personal configuration files for my development environment.
 
+## Layout
+
+Automation can copy or symlink entire trees without per-file mapping:
+
+- **`config/`** — XDG-style application configs (Neovim, Ghostty, Zellij, Alacritty, Kitty, Oh My Posh themes, etc.).
+- **`home/`** — Dotfiles meant for the home directory (e.g. `.zshrc`, `.bashrc`, `.tmux.conf`, `.vimrc`).
+
+Submodule content (for example Taskwarrior themes) is initialized with `./setup.sh` from this repository root.
+
 ## What's Inside
 
 ### Terminal & Shell
 
-- **Alacritty** — Terminal emulator config (`alacritty/`)
-- **Ghostty** — Terminal emulator config (`ghostty/`)
-- **Zellij** — Terminal multiplexer config (`zellij/`)
-- **Oh My Posh** — Shell prompt themes (`oh-my-posh/`)
+- **Alacritty** — `config/alacritty/`
+- **Ghostty** — `config/ghostty/`
+- **Kitty** — `config/kitty/`
+- **Zellij** — `config/zellij/`
+- **Oh My Posh** — Prompt themes (`config/oh-my-posh/`)
 
 ### Editors
 
-- **Neovim** — Full editor setup with plugins and keybindings (`nvim/`)
-  - Requires [Packer](https://github.com/wbthomason/packer.nvim) package manager
-- **VS Code** — IDE settings (`vs-code/`)
+- **Neovim** — `config/nvim/` (plugins managed with [lazy.nvim](https://github.com/folke/lazy.nvim))
+- **VS Code** — `vs-code/`
 
 ### Other
 
-- **Kitty** — Terminal config (legacy, in `other/kitty/`)
-- **Taskwarrior** — Task management config (`other/taskwarrior/`)
+- **Taskwarrior** — `taskwarrior/` (includes a themes submodule)
 
 ## Usage
 
-<!-- markdownlint-disable MD013 -->
-
-These are my personal configurations. Feel free to browse and adapt them for your own use. Each directory contains the relevant config files for that tool.
-
-<!-- markdownlint-enable MD013 -->
+These are my personal configurations. Feel free to browse and adapt them for your own use. Machine-specific settings can live in `~/.local_extras`, which is sourced from `home/.zshrc` and `home/.bashrc` when present.
 
 ## License
 

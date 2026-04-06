@@ -1,7 +1,9 @@
 -- Look and Feel -----------------------------------------------------
 vim.api.nvim_create_autocmd("FileType", {
   pattern = "markdown",
-  callback = function() vim.opt_local.spell = true end
+  callback = function()
+    vim.opt_local.spell = true
+  end,
 })
 vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
@@ -50,7 +52,7 @@ vim.opt.smartcase = true
 -- Whitespace -----------------------------------------------------
 vim.opt.autoindent = true
 vim.opt.expandtab = true
-vim.opt.listchars = { space = '·', tab = '=>' }
+vim.opt.listchars = { space = "·", tab = "=>" }
 vim.opt.list = true
 vim.opt.shiftwidth = 4
 vim.opt.smartindent = true

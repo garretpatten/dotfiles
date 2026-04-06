@@ -1,10 +1,11 @@
+# shellcheck shell=bash
 ### Paths ###
 #
 # LM Studio CLI
-export PATH="$PATH:/Users/garret/.lmstudio/bin"
+export PATH="$PATH:$HOME/.lmstudio/bin"
 #
 # Proton Pass CLI
-export PATH="/Users/garret/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 ### Plugins ###
 #
@@ -26,13 +27,13 @@ export PATH="/Users/garret/.local/bin:$PATH"
 ### Aliases ###
 #
 # Development
-alias acp="git add . && git commit -m "chore: make some updates" && git push origin"
+alias acp='git add . && git commit -m "chore: make some updates" && git push origin'
 alias sub="git submodule update --init --remote --recursive"
 alias ups="git submodule update --remote --recursive && git add . && git commit -m 'Update submodules' && git push origin"
 #
 # System
-alias cbg="bash $HOME/Projects/system-scripts/code-backup/code-backup-gitlab.sh"
-alias cbl="bash $HOME/Projects/system-scripts/code-backup/code-backup-local.sh"
+alias cbg='bash "$HOME/Projects/system-scripts/code-backup/code-backup-gitlab.sh"'
+alias cbl='bash "$HOME/Projects/system-scripts/code-backup/code-backup-local.sh"'
 alias ff="fastfetch"
 alias fp="ps aux | grep"
 alias jfc="pbpaste | jq . | pbcopy"
@@ -45,30 +46,30 @@ alias neo="clear && echo '' && fastfetch"
 alias prettier="npx prettier --write ."
 alias scan="sudo freshclam && sudo clamscan -i -r"
 alias status="protonvpn-cli status"
-alias sub="git submodule init && git submodule update --remote --recursive"
-alias ts="bash $HOME/Projects/tmux-scripts/tmux-setup.sh"
+alias ts='bash "$HOME/Projects/tmux-scripts/tmux-setup.sh"'
 # alias update="brew upgrade && brew update && brew autoremove && brew cleanup -s"
 # alias update="sudo apt upgrade -y && sudo apt full-upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y && sudo apt autoclean -y"
 # alias update="sudo dnf upgrade --refresh -y && sudo flatpak update -y && sudo dnf autoremove -y && sudo dnf clean all"
 # alias update="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && sudo pacman -Rns $(pacman -Qtdq) --noconfirm"
-alias ups="git submodule update --remote --recursive && git add . && git commit -m 'Update submodules' && git push origin"
 alias vpn="protonvpn-cli connect"
 
 ### Environment Variables ###
 #
-# GitHub
-export GITHUB_TOKEN=$(pass-cli item view pass://Personal/'GitHub Token (Personal)'/token)
+# GitHub tokens and other secrets: set in ~/.local_extras (not committed).
 #
 # Nvim
 export NVIM=nvim
 export EDITOR="$NVIM"
 export NVM_DIR="$HOME/.nvm"
+# shellcheck disable=SC1091
   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# shellcheck disable=SC1091
   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 ### History Setup ###
 #
 HISTFILE=$HOME/.zhistory
+# shellcheck disable=SC2034
 SAVEHIST=1000
 HISTSIZE=999
 setopt share_history
@@ -117,3 +118,6 @@ bindkey "^[[B" history-search-forward
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/powerlevel10k_rainbow.omp.json)"
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/sonicboom_dark.omp.json)"
 # eval "$(oh-my-posh init zsh --config /usr/share/oh-my-posh/themes/spaceship.omp.json)"
+
+# shellcheck source=/dev/null
+[[ -f ~/.local_extras ]] && source ~/.local_extras
