@@ -22,12 +22,12 @@ Override **`DOTFILES`** in **`~/.local_extras`** if your clone lives somewhere e
 
 `home/.zshrc` exports standard defaults when unset (XDG Base Directory spec):
 
-| Variable | Default |
-|----------|---------|
-| `XDG_CONFIG_HOME` | `$HOME/.config` |
-| `XDG_DATA_HOME` | `$HOME/.local/share` |
-| `XDG_CACHE_HOME` | `$HOME/.cache` |
-| `XDG_STATE_HOME` | `$HOME/.local/state` |
+| Variable          | Default              |
+| ----------------- | -------------------- |
+| `XDG_CONFIG_HOME` | `$HOME/.config`      |
+| `XDG_DATA_HOME`   | `$HOME/.local/share` |
+| `XDG_CACHE_HOME`  | `$HOME/.cache`       |
+| `XDG_STATE_HOME`  | `$HOME/.local/state` |
 
 Tools that respect these (including many terminals and Neovim) can find configs under `~/.config` without littering `$HOME`.
 
