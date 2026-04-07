@@ -1,5 +1,5 @@
 general.import = [
-    "~/.config/alacritty/alacritty-theme/themes/everforest-dark.toml"
+    "$HOME/.config/alacritty/alacritty-theme/themes/everforest-dark.toml"
 ]
 
 [env]

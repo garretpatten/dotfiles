@@ -26,14 +26,14 @@ vim.cmd("filetype indent on")
 -- Misc -----------------------------------------------------
 vim.g.loaded_perl_provider = 0
 vim.opt.backup = false
-vim.opt.backupdir = vim.fn.expand("~/.cache/vim")
+vim.opt.backupdir = vim.fn.stdpath("cache") .. "/vim"
 vim.opt.binary = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.compatible = false
 vim.opt.encoding = "utf-8"
 vim.opt.mouse = ""
 vim.opt.swapfile = false
-vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
+vim.opt.undodir = vim.fn.stdpath("state") .. "/undo"
 vim.opt.undofile = true
 vim.opt.updatetime = 50
 

@@ -6,6 +6,16 @@ on:
   pull_request:
 
 jobs:
+  shellcheck:
+    name: ShellCheck
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+      - name: Run ShellCheck
+        run: shellcheck setup.sh home/zsh/*.zsh
+
   stylua:
     name: StyLua
     runs-on: ubuntu-latest

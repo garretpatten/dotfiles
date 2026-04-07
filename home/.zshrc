@@ -1,14 +1,31 @@
 # shellcheck shell=bash
+### XDG base dirs (defaults per spec; tools honor these in config files)
+export XDG_CONFIG_HOME="${XDG_CONFIG_HOME:-$HOME/.config}"
+export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
+export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
+export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
+
 ### Dotfiles root (override in ~/.local_extras if your clone lives elsewhere)
 if [[ -z "${DOTFILES:-}" ]]; then
-  for _df in "$HOME/.config/dotfiles" "$HOME/Projects/dotfiles" "$HOME/dotfiles"; do
-    if [[ -d "$_df/home/zsh" ]]; then
-      DOTFILES="$_df"
-      break
+  _df_cache="$HOME/.dotfiles_path"
+  if [[ -f "$_df_cache" ]]; then
+    IFS= read -r _cached < "$_df_cache" || true
+    if [[ -n "${_cached:-}" && -d "$_cached/home/zsh" ]]; then
+      DOTFILES="$_cached"
     fi
-  done
-  unset _df
+  fi
+  if [[ -z "${DOTFILES:-}" ]]; then
+    for _df in "$HOME/.config/dotfiles" "$HOME/Projects/dotfiles" "$HOME/dotfiles"; do
+      if [[ -d "$_df/home/zsh" ]]; then
+        DOTFILES="$_df"
+        printf '%s\n' "$DOTFILES" > "$_df_cache"
+        break
+      fi
+    done
+  fi
+  unset _df_cache _cached _df
 fi
+export DOTFILES
 
 ### OS-specific plugins, update aliases, and theme examples — see home/zsh/*.zsh
 if [[ -n "${DOTFILES:-}" ]]; then
