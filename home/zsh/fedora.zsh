@@ -2,7 +2,9 @@
 # Fedora — sourced from ~/.zshrc
 
 ### Zsh plugins (uncomment if installed; adjust paths if your packages differ)
+# shellcheck source=/dev/null
 source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# shellcheck source=/dev/null
 source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases

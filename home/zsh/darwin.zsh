@@ -2,7 +2,9 @@
 # macOS — sourced from ~/.zshrc (Homebrew layout)
 
 ### Zsh plugins (uncomment if installed)
+# shellcheck source=/dev/null
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# shellcheck source=/dev/null
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases
