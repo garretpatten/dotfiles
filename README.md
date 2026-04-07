@@ -7,7 +7,7 @@ Personal configuration files for my development environment.
 Automation can copy or symlink entire trees without per-file mapping:
 
 - **`config/`** — XDG-style application configs (Neovim, Ghostty, Zellij, Alacritty, Kitty, Oh My Posh themes, etc.).
-- **`home/`** — Dotfiles meant for the home directory (e.g. `.zshrc`, `.bashrc`, `.tmux.conf`, `.vimrc`).
+- **`home/`** — Dotfiles meant for the home directory (e.g. `.zshrc`, `.bashrc`, `.tmux.conf`, `.vimrc`). OS-specific zsh snippets (plugins, `update` alias, oh-my-posh examples) live under **`home/zsh/`** and are sourced from **`home/.zshrc`** after auto-detecting the repo path (`DOTFILES` or common clone locations).
 
 Submodule content (for example Taskwarrior themes) is initialized with `./setup.sh` from this repository root.
 
