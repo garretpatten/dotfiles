@@ -17,6 +17,7 @@ jobs:
       prettier_run: true
       ruff_run: true
       shellcheck_run: true
+      stylua_run: true
       taplo_run: true
       yamllint_run: true
     secrets: inherit
