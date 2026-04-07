@@ -55,7 +55,10 @@ alias vpn="protonvpn-cli connect"
 
 ### Environment Variables ###
 #
-# GitHub tokens and other secrets: set in ~/.local_extras (not committed).
+# Other secrets: set in ~/.local_extras (not committed).
+# GitHub
+export GITHUB_TOKEN=$(pass-cli item view pass://Personal/'GitHub Token (Personal)'/token)
+# Other secrets: set in ~/.local_extras (not committed).
 #
 # Nvim
 export NVIM=nvim
