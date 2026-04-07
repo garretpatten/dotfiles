@@ -2,11 +2,11 @@
 # Fedora — sourced from ~/.zshrc
 
 ### Zsh plugins (uncomment if installed; adjust paths if your packages differ)
-# source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases
-# alias update="sudo dnf upgrade --refresh -y && sudo flatpak update -y && sudo dnf autoremove -y && sudo dnf clean all"
+alias update="sudo dnf upgrade --refresh -y && sudo flatpak update -y && sudo dnf autoremove -y && sudo dnf clean all"
 
 ### Theme (oh-my-posh — pick one; paths often match other Linux distros)
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"

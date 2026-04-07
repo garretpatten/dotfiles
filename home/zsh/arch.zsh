@@ -2,11 +2,11 @@
 # Arch Linux — sourced from ~/.zshrc
 
 ### Zsh plugins (uncomment if installed)
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases
-# alias update="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && sudo pacman -Rns $(pacman -Qtdq) --noconfirm"
+alias update="sudo pacman -Syu --noconfirm && yay -Syu --noconfirm && sudo pacman -Rns $(pacman -Qtdq) --noconfirm"
 
 ### Theme (oh-my-posh — pick one)
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"

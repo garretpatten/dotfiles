@@ -2,11 +2,11 @@
 # macOS — sourced from ~/.zshrc (Homebrew layout)
 
 ### Zsh plugins (uncomment if installed)
-# source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases
-# alias update="brew upgrade && brew update && brew autoremove && brew cleanup -s"
+alias update="brew upgrade && brew update && brew autoremove && brew cleanup -s"
 
 ### Theme (oh-my-posh — pick one)
 # eval "$(oh-my-posh init zsh --config $(brew --prefix oh-my-posh)/themes/amro.omp.json)"

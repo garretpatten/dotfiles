@@ -2,11 +2,11 @@
 # Ubuntu / Debian — sourced from ~/.zshrc
 
 ### Zsh plugins (uncomment if installed)
-# source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 ### Aliases
-# alias update="sudo apt upgrade -y && sudo apt full-upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y && sudo apt autoclean -y"
+alias update="sudo apt upgrade -y && sudo apt full-upgrade -y && sudo apt update -y && sudo flatpak update -y && sudo apt autoremove -y && sudo apt autoclean -y"
 
 ### Theme (oh-my-posh — pick one)
 # eval "$(oh-my-posh init zsh --config $HOME/.config/ohmyposh/base.json)"
