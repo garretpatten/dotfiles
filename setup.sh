@@ -14,3 +14,11 @@ if [[ -f .gitmodules ]]; then
     git submodule update --recursive
   fi
 fi
+
+# Two-pass headless Neovim: Lazy installs plugins first; TSUpdate runs after
+# runtime paths are stable (avoids races on first bootstrap).
+if command -v nvim >/dev/null 2>&1; then
+  export XDG_CONFIG_HOME="$PWD/config"
+  nvim --headless "+Lazy! sync" +qa
+  nvim --headless "+TSUpdate" +qa
+fi
