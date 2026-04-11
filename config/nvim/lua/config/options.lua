@@ -11,9 +11,11 @@ vim.opt.foldenable = true
 vim.opt.guifont = "Fira Code:h12"
 vim.opt.wrap = false
 vim.opt.re = 0
+vim.opt.shiftwidth = 2
 vim.opt.showcmd = true
 vim.opt.showmatch = true
 vim.opt.showmode = true
+vim.opt.softtabstop = 2
 vim.opt.termguicolors = true
 vim.opt.wildmode = "longest,list"
 vim.cmd("syntax on")
