@@ -57,6 +57,12 @@ if [[ -n "${DOTFILES:-}" ]]; then
   esac
 fi
 
+# Highlighting colors that match Everforest
+ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'      # Green for valid commands
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'              # Standard text for paths
+ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'   # Red for errors
+
 ### Paths ###
 #
 # LM Studio CLI
