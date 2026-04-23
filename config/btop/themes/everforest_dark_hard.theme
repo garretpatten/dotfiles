@@ -1,0 +1,49 @@
+# btop Everforest Dark Hard Theme
+# Colors matched to Ghostty P3 Profile
+
+# Main background, empty for terminal default, or #272e33
+theme[main_bg]="#272e33"
+
+# Main text color (#d3c6aa)
+theme[main_fg]="#d3c6aa"
+
+# Title color for boxes (#a7c080)
+theme[title]="#a7c080"
+
+# Highlight color for keyboard shortcuts (#dbbc7f)
+theme[hi_fg]="#dbbc7f"
+
+# Inactive/Selected backgrounds
+theme[selected_bg]="#475258"
+theme[selected_fg]="#e6e2cc"
+theme[inactive_fg]="#859289"
+
+# Graphs and Meter colors
+# Low (Green), Mid (Aqua), High (Red)
+theme[cpu_start]="#a7c080"
+theme[cpu_mid]="#83c092"
+theme[cpu_end]="#e67e80"
+
+theme[free_start]="#a7c080"
+theme[free_mid]="#83c092"
+theme[free_end]="#7fbbb3"
+
+theme[cached_start]="#7fbbb3"
+theme[cached_mid]="#d699b6"
+theme[cached_end]="#e67e80"
+
+theme[available_start]="#dbbc7f"
+theme[available_mid]="#a7c080"
+theme[available_end]="#83c092"
+
+# Mem and Net
+theme[mem_start]="#a7c080"
+theme[mem_mid]="#dbbc7f"
+theme[mem_end]="#e67e80"
+
+theme[net_start]="#7fbbb3"
+theme[net_mid]="#a7c080"
+theme[net_end]="#83c092"
+
+# Processes graph color
+theme[proc_misc]="#7fbbb3"
