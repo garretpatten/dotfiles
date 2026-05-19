@@ -27,6 +27,10 @@ if [[ -z "${DOTFILES:-}" ]]; then
 fi
 export DOTFILES
 
+### Dotfiles UI theme — DOTFILES_THEME (gruvbox | everforest); see docs/themes/README.md
+# shellcheck source=/dev/null
+[[ -n "${DOTFILES:-}" && -f "${DOTFILES}/home/zsh/theme-env.sh" ]] && source "${DOTFILES}/home/zsh/theme-env.sh"
+
 ### OS-specific plugins, update aliases, and theme examples — see home/zsh/*.zsh
 if [[ -n "${DOTFILES:-}" ]]; then
   case "$(uname -s)" in
@@ -57,11 +61,21 @@ if [[ -n "${DOTFILES:-}" ]]; then
   esac
 fi
 
-# Highlighting colors that match Everforest
-ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'      # Green for valid commands
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
-ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'              # Standard text for paths
-ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'   # Red for errors
+### zsh-syntax-highlighting colors (matches DOTFILES_THEME; requires zsh-syntax-highlighting above)
+case "${DOTFILES_THEME:-gruvbox}" in
+  everforest)
+    if [[ -n "${DOTFILES:-}" ]]; then
+      # shellcheck disable=SC1091
+      source "${DOTFILES}/home/zsh/themes/everforest-syntax.zsh"
+    fi
+    ;;
+  *)
+    if [[ -n "${DOTFILES:-}" ]]; then
+      # shellcheck disable=SC1091
+      source "${DOTFILES}/home/zsh/themes/gruvbox-syntax.zsh"
+    fi
+    ;;
+esac
 
 ### Paths ###
 #

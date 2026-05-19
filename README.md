@@ -28,6 +28,13 @@ Automation can copy or symlink entire trees without per-file mapping:
 Override **`DOTFILES`** in **`~/.local_extras`** if your clone lives somewhere
 else.
 
+### UI themes (Gruvbox / Everforest)
+
+See **[docs/themes/README.md](docs/themes/README.md)** for switching colors across
+shell, tmux, Oh My Posh, Neovim, Ghostty, btop, and fastfetch. **`DOTFILES_THEME`**
+defaults in **`home/zsh/theme-env.sh`**; Everforest assets remain in-repo as
+alternate configs.
+
 ### XDG directories
 
 `home/.zshrc` exports standard defaults when unset (XDG Base Directory spec):

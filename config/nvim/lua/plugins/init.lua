@@ -1,6 +1,7 @@
 local specs = {}
+local theme = require("config.theme")
 for _, name in ipairs({
-  "everforest",
+  theme,
   "telescope",
   "treesitter",
   "cmp",
