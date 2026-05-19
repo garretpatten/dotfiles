@@ -1,15 +1,8 @@
-// Active theme: Gruvbox — for Everforest copy variants/everforest.jsonc → config.jsonc (docs/themes/README.md)
 {
     "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
     "logo": {
         "type": "builtin",
         "source": "macos",
-        "color": {
-            "1": "38;2;152;151;26",
-            "2": "38;2;104;157;106",
-            "3": "38;2;69;133;136",
-            "4": "38;2;215;153;33"
-        },
         "padding": {
             "right": 4
         }
@@ -17,8 +10,8 @@
     "display": {
         "separator": " ❯ ",
         "color": {
-            "keys": "cyan",
-            "title": "green"
+            "keys": "#fabd2f",
+            "title": "#fabd2f"
         }
     },
     "modules": [
@@ -35,7 +28,7 @@
         "break",
         "localip",
         "battery",
-        "break",
+        "break", // Logical break before palette
         {
             "type": "colors",
             "symbol": "circle"

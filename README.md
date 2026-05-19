@@ -28,19 +28,6 @@ Automation can copy or symlink entire trees without per-file mapping:
 Override **`DOTFILES`** in **`~/.local_extras`** if your clone lives somewhere
 else.
 
-### UI themes (Gruvbox / Everforest)
-
-**Default with zero edits:** **Gruvbox dark hard** everywhere this repo wires themes
-together (`DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`**, Neovim
-**`config/nvim/lua/config/theme.lua`**, Ghostty **`theme-gruvbox.inc`**, btop
-**`gruvbox_dark_hard.theme`**, fastfetch **`config.jsonc`**, and the Gruvbox
-tmux status snippet). Everforest stays in-repo as alternate files; see
-**[docs/themes/README.md](docs/themes/README.md)** for the checklist.
-
-**Ghostty + tmux:** use **`set -g mouse on`** in tmux (see **`config/tmux/includes/base.conf`**)
-so two-finger scroll scrolls the session instead of Ghostty sending arrow keys
-that trigger **zsh** history search. Details are in **docs/themes/README.md**.
-
 ### XDG directories
 
 `home/.zshrc` exports standard defaults when unset (XDG Base Directory spec):
@@ -68,7 +55,7 @@ From the repository root, **`./setup.sh`**:
 ## CI
 
 GitHub Actions runs **StyLua** on `config/nvim` and **ShellCheck** on
-**`setup.sh`**, **`home/.zshrc`**, **`home/zsh/*.zsh`**, and **`home/zsh/themes/*.zsh`**.
+**`setup.sh`** and **`home/zsh/*.zsh`**.
 
 ## What's Inside
 

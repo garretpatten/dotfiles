@@ -29,14 +29,15 @@ npx markdownlint-cli2 "**/*.md" "#node_modules"
 
 yamllint -f standard .github .yamllint
 
-shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh home/zsh/themes/*.zsh
+shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh
+
+actionlint
 
 stylua --check config/nvim
 
 taplo check config/alacritty/alacritty.toml config/nvim/.stylua.toml
 
-jq -e . < config/oh-my-posh/themes/gruvbox-amro.omp.json
-jq -e . < config/oh-my-posh/themes/everforest-amro.omp.json
+jq -e . < config/nvim/lazy-lock.json
 jq -e . < .markdownlint.json
 jq -e . < package.json
 jq -e . < vs-code/settings.json
@@ -55,8 +56,8 @@ changed paths match.
 - **markdownlint-cli2** — `**/*.md`. Check:
   `npx markdownlint-cli2 "**/*.md" "#node_modules"` — Fix manually (`.markdownlint.json`)
 - **yamllint** — `.yml`/`.yaml`. Check: `yamllint -f standard .github .yamllint`
-- **ShellCheck** — `setup.sh`, `home/.bashrc`, `home/.zshrc`, `home/zsh/*.zsh`,
-  `home/zsh/themes/*.zsh`. Check: `shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh home/zsh/themes/*.zsh` — Keep
+- **ShellCheck** — `setup.sh`, `home/.bashrc`, `home/.zshrc`, `home/zsh/*.zsh`.
+  Check: `shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh` — Keep
   `# shellcheck` directives when intentional
 - **actionlint** — `.github/workflows/`, `.github/actions/`. Check: `actionlint`
 - **StyLua** — `config/nvim/**/*.lua`. Check: `stylua --check config/nvim` — Fix:
@@ -78,10 +79,6 @@ tools for the file types you touched so CI does not fail on unrelated paths.
   `config/nvim/`; format with StyLua.
 - **`home/`** — Dotfiles synced to `$HOME` (`.zshrc`, `.bashrc`, `.tmux.conf`,
   etc.). OS-specific zsh snippets: `home/zsh/{darwin,arch,fedora,ubuntu}.zsh`.
-  **`home/zsh/theme-env.sh`** sets **`DOTFILES_THEME`**; it defaults to **`gruvbox`**
-  so no edit is required for the Gruvbox stack. **Tmux** enables **`mouse on`** in
-  **`config/tmux/includes/base.conf`** so Ghostty trackpad scroll works with zsh
-  (see **`docs/themes/README.md`**).
 - **`setup.sh`** — Bootstrap: validates `config/` and `home/`, submodules, headless
   `nvim` for Lazy/Tree-sitter.
 - **`vs-code/`** — Editor settings reference (not always symlinked).

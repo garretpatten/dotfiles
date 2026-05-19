@@ -27,10 +27,6 @@ if [[ -z "${DOTFILES:-}" ]]; then
 fi
 export DOTFILES
 
-### Dotfiles UI theme — DOTFILES_THEME (gruvbox | everforest); see docs/themes/README.md
-# shellcheck source=/dev/null
-[[ -n "${DOTFILES:-}" && -f "${DOTFILES}/home/zsh/theme-env.sh" ]] && source "${DOTFILES}/home/zsh/theme-env.sh"
-
 ### OS-specific plugins, update aliases, and theme examples — see home/zsh/*.zsh
 if [[ -n "${DOTFILES:-}" ]]; then
   case "$(uname -s)" in
@@ -61,21 +57,11 @@ if [[ -n "${DOTFILES:-}" ]]; then
   esac
 fi
 
-### zsh-syntax-highlighting colors (matches DOTFILES_THEME; requires zsh-syntax-highlighting above)
-case "${DOTFILES_THEME:-gruvbox}" in
-  everforest)
-    if [[ -n "${DOTFILES:-}" ]]; then
-      # shellcheck disable=SC1091
-      source "${DOTFILES}/home/zsh/themes/everforest-syntax.zsh"
-    fi
-    ;;
-  *)
-    if [[ -n "${DOTFILES:-}" ]]; then
-      # shellcheck disable=SC1091
-      source "${DOTFILES}/home/zsh/themes/gruvbox-syntax.zsh"
-    fi
-    ;;
-esac
+# Highlighting colors aligned with Gruvbox Dark Hard (TerminalColors)
+ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
+ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
+ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
+ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
 
 ### Paths ###
 #
@@ -102,9 +88,6 @@ alias home="cd && clear && echo '' && fastfetch && ls"
 alias kanye="curl -s https://api.kanye.rest | jq '.quote'"
 alias ls="eza --color=always --icons=always"
 alias lls="eza -la"
-function main {
-  bash "$HOME/Projects/system-scripts/tmux/setup-main.sh" "$@"
-}
 alias mdlint='npx markdownlint-cli2 "**/*.md" "#node_modules"'
 alias neo="clear && echo '' && fastfetch"
 alias prettier="npx prettier --write ."

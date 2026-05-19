@@ -1,17 +1,19 @@
--- Hex palette: config/ghostty/themes/gruvbox-dark-hard-contrast (Gruvbox dark hard)
 return {
   {
     "ellisonleao/gruvbox.nvim",
-    name = "gruvbox",
     priority = 1000,
     config = function()
       require("gruvbox").setup({
         contrast = "hard",
-        transparent_mode = false,
-        terminal_colors = true,
+        italic = {
+          strings = false,
+          comments = false,
+        },
       })
       vim.o.background = "dark"
       vim.cmd.colorscheme("gruvbox")
+      vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+      vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
     end,
   },
 }

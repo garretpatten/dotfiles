@@ -38,7 +38,7 @@
 
 - Abyss Theme
 - Atlantic Theme
-- Everforest
+- Gruvbox Theme (jdinhlife.gruvbox)
 - GitHub Theme
 - HackTheBox
 - Kimbie Dark+
