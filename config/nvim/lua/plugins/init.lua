@@ -1,6 +1,6 @@
 local specs = {}
 for _, name in ipairs({
-  "everforest",
+  "gruvbox",
   "telescope",
   "treesitter",
   "cmp",

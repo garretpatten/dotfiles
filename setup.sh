@@ -1,9 +1,49 @@
 #!/usr/bin/env bash
 set -euo pipefail
-cd "$(dirname "$0")"
+ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$ROOT_DIR"
+
+# Symlink repo config/<app>/ → ~/.config/<app>/ (real dirs renamed to *.dotfiles-bak-<timestamp>)
+link_xdg_config_dirs() {
+  shopt -s nullglob
+  local xdg config_dir dir name src_abs target bak
+  local failed=0
+  xdg="${XDG_CONFIG_HOME:-$HOME/.config}"
+  mkdir -p "$xdg"
+
+  config_dir="$ROOT_DIR/config"
+  for dir in "$config_dir/"*/ ; do
+    [[ -d "$dir" ]] || continue
+    name="$(basename "${dir%/}")"
+    src_abs="$(cd "${dir%/}" && pwd)"
+    target="${xdg}/${name}"
+
+    if [[ -e "$target" || -L "$target" ]] && [[ ! -L "$target" ]]; then
+      bak="${target}.dotfiles-bak-$(date +%Y%m%d%H%M%S)"
+      printf '%s exists; moving to %s\n' "$target" "$bak" >&2
+      mv "$target" "$bak" || failed=1
+    fi
+
+    if [[ "$(readlink "$target" 2>/dev/null)" == "$src_abs" ]]; then
+      printf '%s already -> %s\n' "$target" "$src_abs"
+      continue
+    fi
+
+    ln -sfn "$src_abs" "$target"
+    printf 'Linked %s -> %s\n' "$target" "$src_abs"
+  done
+  [[ "$failed" -eq 0 ]]
+}
+
+case "${1:-}" in
+  --link-xdg-config | link-xdg | --link-xdg | link-xdg-config)
+    link_xdg_config_dirs
+    exit 0
+    ;;
+esac
 
 if [[ ! -d config ]] || [[ ! -d home ]]; then
-  echo "setup.sh: expected config/ and home/ in $(pwd)" >&2
+  printf 'setup.sh: expected config/ and home/ in %s\n' "$(pwd)" >&2
   exit 1
 fi
 

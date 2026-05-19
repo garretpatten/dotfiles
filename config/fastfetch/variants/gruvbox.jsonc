@@ -3,6 +3,12 @@
   "logo": {
     "type": "builtin",
     "source": "macos",
+    "color": {
+      "1": "38;2;152;151;26",
+      "2": "38;2;104;157;106",
+      "3": "38;2;69;133;136",
+      "4": "38;2;215;153;33",
+    },
     "padding": {
       "right": 4,
     },
@@ -10,8 +16,8 @@
   "display": {
     "separator": " ❯ ",
     "color": {
-      "keys": "#fabd2f",
-      "title": "#fabd2f",
+      "keys": "cyan",
+      "title": "green",
     },
   },
   "modules": [
@@ -28,7 +34,7 @@
     "break",
     "localip",
     "battery",
-    "break", // Logical break before palette
+    "break",
     {
       "type": "colors",
       "symbol": "circle",

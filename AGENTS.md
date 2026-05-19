@@ -37,7 +37,7 @@ stylua --check config/nvim
 
 taplo check config/alacritty/alacritty.toml config/nvim/.stylua.toml
 
-jq -e . < config/oh-my-posh/themes/everforest-amro.omp.json
+jq -e . < config/nvim/lazy-lock.json
 jq -e . < .markdownlint.json
 jq -e . < package.json
 jq -e . < vs-code/settings.json
@@ -79,12 +79,33 @@ tools for the file types you touched so CI does not fail on unrelated paths.
   `config/nvim/`; format with StyLua.
 - **`home/`** — Dotfiles synced to `$HOME` (`.zshrc`, `.bashrc`, `.tmux.conf`,
   etc.). OS-specific zsh snippets: `home/zsh/{darwin,arch,fedora,ubuntu}.zsh`.
-- **`setup.sh`** — Bootstrap: validates `config/` and `home/`, submodules, headless
-  `nvim` for Lazy/Tree-sitter.
+- **`setup.sh`** — Bootstrap: validates **`config/`** and **`home/`**,
+  optional git submodules if **`.gitmodules`** exists, headless **`nvim`** for
+  Lazy/Tree-sitter. **`./setup.sh --link-xdg-config`** symlinks each
+  **`config/<app>/`** directory to **`$XDG_CONFIG_HOME`** (see **`README.md`**).
 - **`vs-code/`** — Editor settings reference (not always symlinked).
 
 `home/.zshrc` defines `DOTFILES` via `~/.dotfiles_path` and exports XDG defaults.
 Secrets belong in `~/.local_extras`, not in this repo.
+
+## Embedding as a submodule (consumers)
+
+When this repo lives under another project (nested path such as **`src/dotfiles`**):
+
+- **`DOTFILES` must be the nested checkout**, not the parent repo root — typically
+  via **`~/.dotfiles_path`**, **`export DOTFILES`** in **`~/.local_extras`**, or
+  discovery defaults.
+- **Two-step Git workflow**: Commit here, push submodule remote, then bump the
+  submodule pointer + commit in the parent repository.
+- **Provisioning**: Parent orchestration often **copies only some** **`config/`**
+  subtrees; **`setup.sh --link-xdg-config`** run **from this repo’s directory**
+  (works inside the submodule checkout) installs the **full** XDG symlink layout.
+  Modular **`home/.tmux.conf`** that **`source-file`s `~/.config/tmux`** requires
+  **`config/tmux`** under **`~/.config`** unless **`home/.tmux.conf`** is older
+  self-contained inline config.
+- **Lint/devdeps**: **`npm ci`** applies to **this** tree’s **`package.json`**;
+  the parent project’s **`npm`** install does not substitute unless documented
+  otherwise.
 
 ## Conventions
 
