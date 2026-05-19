@@ -44,13 +44,20 @@ under `~/.config` without littering `$HOME`.
 
 ## Setup script
 
-From the repository root, **`./setup.sh`**:
+From the repository root:
 
-- Verifies **`config/`** and **`home/`** exist before doing anything.
-- If **`.gitmodules`** is present, runs
-  **`git submodule update --init --recursive`** only when submodules are not yet
-  initialized; otherwise **`git submodule update --recursive`**. Safe to run
-  repeatedly.
+- **`./setup.sh`** — verifies **`config/`** and **`home/`**, runs git submodule
+  helpers when **`.gitmodules`** exists (safe to rerun), then runs optional
+  headless Neovim **Lazy**/Tree-sitter steps when **`nvim`** is on `PATH`.
+
+- **`./setup.sh --link-xdg-config`** — symlinks every **`config/<app>/`**
+  tree to **`$XDG_CONFIG_HOME/<app>/`** (default **`~/.config/<app>/`**). If you
+  already have a **real directory** there, it is renamed to
+  **`*.dotfiles-bak-<timestamp>`** first.
+
+After linking: **Ghostty**, **Kitty**, **Neovim**, **tmux** module layout, etc.
+resolve against **`~/.config`**. **`home/.tmux.conf`** assumes
+**`~/.config/tmux/includes/base.conf`** exists.
 
 ## CI
 

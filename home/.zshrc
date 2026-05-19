@@ -27,6 +27,26 @@ if [[ -z "${DOTFILES:-}" ]]; then
 fi
 export DOTFILES
 
+### Default UI theme (Gruvbox dark hard; override with DOTFILES_THEME / ~/.local_extras)
+if [[ -n "${DOTFILES:-}" && -r "$DOTFILES/home/zsh/theme-env.sh" ]]; then
+  # Dynamic path prevents shellcheck following; file is bundled in home/zsh/theme-env.sh
+  # shellcheck disable=SC1091
+  . "$DOTFILES/home/zsh/theme-env.sh"
+fi
+
+### Cursor / VS Code integrated terminal (alternate-screen leak → wheel mimics arrows)
+# When the tty is stuck in alternate-screen semantics, the wheel sends ^[[A/B;
+# home/.zshrc maps those to history search. Leave alt screen before each prompt.
+# Opt out: DISABLE_DOTFILES_VSCODE_ALTSCR_FIX=1
+if [[ "${TERM_PROGRAM:-}" == vscode && -z "${DISABLE_DOTFILES_VSCODE_ALTSCR_FIX:-}" ]]; then
+  _dotfiles_precmd_vscode_leave_alt_scr() {
+    [[ -t 1 ]] || return 0
+    printf '\033[?1049l'
+  }
+  # zsh precmd_functions; harmless if empty (POSIX bash array syntax parses under shellcheck).
+  precmd_functions+=(_dotfiles_precmd_vscode_leave_alt_scr)
+fi
+
 ### OS-specific plugins, update aliases, and theme examples — see home/zsh/*.zsh
 if [[ -n "${DOTFILES:-}" ]]; then
   case "$(uname -s)" in

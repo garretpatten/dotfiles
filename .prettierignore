@@ -6,3 +6,6 @@ package-lock.json
 *.min.js
 *.snap
 
+# Ghostty theme fragments (must stay newline-based; Prettier merges lines)
+config/ghostty/*.inc
+

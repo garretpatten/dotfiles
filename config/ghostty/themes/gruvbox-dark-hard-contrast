@@ -2,7 +2,7 @@ background = #1d2021
 foreground = #ebdbb2
 selection-background = #ebdbb2
 selection-foreground = #1d2021
-cursor-color = #ebdbb2
+cursor-color = #fabd2f
 cursor-text = #1d2021
 palette = 0=#1d2021
 palette = 1=#cc241d

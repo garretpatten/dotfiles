@@ -3,7 +3,10 @@
 <!-- markdownlint-disable MD013 -->
 
 If you **do not change anything**, you get **Gruvbox dark hard** consistently:
-`DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`**, Neovim **`config/nvim/lua/config/theme.lua`**, Ghostty **`theme-gruvbox.inc`**, btop, fastfetch, and tmux’s Gruvbox status theme.
+`DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`** (sourced from **`home/.zshrc`**),
+Neovim **`config/nvim/lua/config/theme.lua`**, Ghostty uses **`themes/gruvbox-dark-hard-contrast`**,
+Oh My Posh **`gruvbox-amro`**, Zellij **`gruvbox-dark`**, btop, tmux Gruvbox status (**`config/tmux/themes/gruvbox.conf`**),
+Fastfetch accents, VS Code Gruvbox in **`vs-code/`**.
 
 Everforest assets stay in-repo as alternates; switch only when you want to.
 
@@ -13,12 +16,11 @@ Everything below assumes you might override **`DOTFILES_THEME`** or individual a
 | ----------------------- | ------------------------- | --------------------- |
 | `home/zsh/theme-env.sh` | `gruvbox` or `everforest` | Sets `DOTFILES_THEME` |
 
-- **Oh My Posh**: `home/zsh/oh-my-posh-theme.zsh` picks `config/oh-my-posh/themes/{gruvbox,everforest}-amro.omp.json`.
-- **zsh-syntax-highlighting**: `home/zsh/themes/<theme>-syntax.zsh` (sourced from `home/.zshrc` after OS-specific zsh).
-- **Tmux**: `home/.tmux.conf` loads `config/tmux/themes/${DOTFILES_THEME}.conf` (fallback `DOTFILES` from env, `~/.dotfiles_path`, or `$HOME/Projects/dotfiles`). Start tmux **from zsh** so the env is inherited.
-
-Per-session override: `DOTFILES_THEME=everforest zsh`  
-Machine-only override (no git edits): add `export DOTFILES_THEME=everforest` to `~/.local_extras`.
+- **Oh My Posh**: **`home/zsh/oh-my-posh-theme.zsh`** (sourced from **`home/zsh/{darwin,arch,fedora,ubuntu}.zsh`**) picks `config/oh-my-posh/themes/{gruvbox,everforest}-amro.omp.json`.
+- **zsh-syntax-highlighting**: optional **`home/zsh/themes/<theme>-syntax.zsh`** — not wired by default; Gruvbox colors are set inline in **`home/.zshrc`**.
+- **Tmux**: **`home/.tmux.conf`** sources **`~/.config/tmux/includes/base.conf`**, which loads **`~/.config/tmux/themes/gruvbox.conf`**. Run **`setup.sh --link-xdg-config`** so **`~/.config/tmux`** points at **`config/tmux/`**.
+  Per-session override: `DOTFILES_THEME=everforest zsh`  
+  Machine-only override (no git edits): add `export DOTFILES_THEME=everforest` to `~/.local_extras`.
 
 ## Neovim
 
@@ -34,12 +36,10 @@ On macOS, **Ghostty** maps two-finger scroll to **arrow keys** when the app is i
 
 ### Theme files
 
-Main **`config/ghostty/config`** includes **`theme-gruvbox.inc`** or **`theme-everforest.inc`** (comment/uncomment the `config-file` line).
+Primary **`config/ghostty/config`** sets **`theme = gruvbox-dark-hard-contrast`** (palette **`themes/gruvbox-dark-hard-contrast`**).
+Optional snippets **`theme-gruvbox.inc`**, **`theme-everforest.inc`**, and **`core.inc`** duplicate settings for alternate split layouts — the single-file **`config`** in this repo is canonical.
 
-- Gruvbox uses the custom palette file **`config/ghostty/themes/gruvbox-dark-hard-contrast`** (referenced by name from `theme-gruvbox.inc`).
-- Shared options live in **`config/ghostty/core.inc`**.
-
-Copy the whole `config/ghostty/` tree to `~/.config/ghostty/` (or symlink).
+Symlink **`config/ghostty/`** to **`~/.config/ghostty/`** (e.g. via **`setup.sh --link-xdg-config`**).
 
 ## btop
 
