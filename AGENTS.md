@@ -37,7 +37,7 @@ stylua --check config/nvim
 
 taplo check config/alacritty/alacritty.toml config/nvim/.stylua.toml
 
-jq -e . < config/oh-my-posh/themes/everforest-amro.omp.json
+jq -e . < config/oh-my-posh/themes/gruvbox-amro.omp.json
 jq -e . < .markdownlint.json
 jq -e . < package.json
 jq -e . < vs-code/settings.json
