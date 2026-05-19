@@ -1,5 +1,7 @@
 # UI themes (Gruvbox vs Everforest)
 
+<!-- markdownlint-disable MD013 -->
+
 If you **do not change anything**, you get **Gruvbox dark hard** consistently:
 `DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`**, Neovim **`config/nvim/lua/config/theme.lua`**, Ghostty **`theme-gruvbox.inc`**, btop, fastfetch, and tmux’s Gruvbox status theme.
 
@@ -7,8 +9,8 @@ Everforest assets stay in-repo as alternates; switch only when you want to.
 
 Everything below assumes you might override **`DOTFILES_THEME`** or individual app configs.
 
-| Control | Values | Effect |
-|--------|--------|--------|
+| Control                 | Values                    | Effect                |
+| ----------------------- | ------------------------- | --------------------- |
 | `home/zsh/theme-env.sh` | `gruvbox` or `everforest` | Sets `DOTFILES_THEME` |
 
 - **Oh My Posh**: `home/zsh/oh-my-posh-theme.zsh` picks `config/oh-my-posh/themes/{gruvbox,everforest}-amro.omp.json`.

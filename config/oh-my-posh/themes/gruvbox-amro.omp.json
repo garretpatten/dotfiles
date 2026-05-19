@@ -48,9 +48,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#ebdbb2",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#fb4934{{ end }}"
-          ],
+          "foreground_templates": ["{{ if gt .Code 0 }}#fb4934{{ end }}"],
           "template": "❯ "
         }
       ]

@@ -57,10 +57,15 @@ if [[ -n "${DOTFILES:-}" ]]; then
   esac
 fi
 
-# Highlighting colors aligned with Gruvbox Dark Hard (TerminalColors)
+# Highlighting colors aligned with Gruvbox Dark Hard (TerminalColors). Keys are
+# consumed by zsh-syntax-highlighting (not Bash variable names despite SC2154).
+# shellcheck disable=SC2154,SC2034
 ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
+# shellcheck disable=SC2154
 ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
+# shellcheck disable=SC2154
 ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
+# shellcheck disable=SC2154,SC2034
 ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
 
 ### Paths ###

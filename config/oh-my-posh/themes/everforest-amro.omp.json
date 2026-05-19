@@ -48,9 +48,7 @@
           "type": "text",
           "style": "plain",
           "foreground": "#d3c6aa",
-          "foreground_templates": [
-            "{{ if gt .Code 0 }}#e67e80{{ end }}"
-          ],
+          "foreground_templates": ["{{ if gt .Code 0 }}#e67e80{{ end }}"],
           "template": "❯ "
         }
       ]
