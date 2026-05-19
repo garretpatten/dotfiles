@@ -1,6 +1,17 @@
 # Dotfiles
 
-Personal configuration files for my development environment.
+<img src="docs/assets/dotfiles-mark.svg" alt="" width="88" height="88">
+
+**Personal, portable developer environment** — shell startup, XDG app configs,
+editors, terminals, and CI-backed quality checks. Designed to symlink or vend
+across machines (including nested submodule layouts) without one-off paths baked
+into the tree.
+
+[![MIT License](https://img.shields.io/github/license/garretpatten/dotfiles?style=flat-square&label=license&color=458588)](./LICENSE)
+[![Quality checks](https://img.shields.io/github/actions/workflow/status/garretpatten/dotfiles/quality-checks.yaml?branch=master&style=flat-square&label=quality&logo=github)](https://github.com/garretpatten/dotfiles/actions/workflows/quality-checks.yaml)
+[![Security checks](https://img.shields.io/github/actions/workflow/status/garretpatten/dotfiles/security-checks.yaml?branch=master&style=flat-square&label=security&logo=github)](https://github.com/garretpatten/dotfiles/actions/workflows/security-checks.yaml)
+[![OpenSSF Scorecard](https://img.shields.io/badge/OpenSSF-Scorecard-101828?style=flat-square&logo=openssf)](https://securityscorecards.dev/viewer/?uri=github.com/garretpatten/dotfiles)
+[![Last commit](https://img.shields.io/github/last-commit/garretpatten/dotfiles?style=flat-square&label=updated)](https://github.com/garretpatten/dotfiles/commits/master/)
 
 ## Layout
 
@@ -94,12 +105,14 @@ Some projects ship this repo under a nested path (for example
   not replace **`(cd path/to/dotfiles && npm ci)`** when you lint or develop
   **inside** the dotfiles tree.
 
-## CI
+## CI and supply chain
 
-GitHub Actions runs **StyLua** on `config/nvim` and **ShellCheck** on
-**`setup.sh`** and **`home/zsh/*.zsh`**.
+Pull requests run reusable workflows for **linting / formatting** (StyLua,
+ShellCheck, Prettier, and the rest of the shared quality matrix) and **security**
+(Semgrep, TruffleHog). **Dependabot** keeps GitHub Actions references current.
+Contribution and automation notes for agents live in [`AGENTS.md`](./AGENTS.md).
 
-## What's Inside
+## What's inside
 
 ### Terminal & Shell
 
