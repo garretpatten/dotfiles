@@ -19,6 +19,9 @@ macos-window-shadow = false
 macos-non-native-fullscreen = true
 
 ### 5. Interaction ###
+# With tmux: enable `mouse on` in tmux so trackpad scroll is handled by tmux.
+# Otherwise Ghostty may send ↑/↓ in alternate screen and zsh uses those for history.
+# See docs/themes/README.md (Ghostty → Touchpad scroll).
 focus-follows-mouse = true
 clipboard-read = allow
 confirm-close-surface = false

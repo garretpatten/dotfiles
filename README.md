@@ -30,10 +30,16 @@ else.
 
 ### UI themes (Gruvbox / Everforest)
 
-See **[docs/themes/README.md](docs/themes/README.md)** for switching colors across
-shell, tmux, Oh My Posh, Neovim, Ghostty, btop, and fastfetch. **`DOTFILES_THEME`**
-defaults in **`home/zsh/theme-env.sh`**; Everforest assets remain in-repo as
-alternate configs.
+**Default with zero edits:** **Gruvbox dark hard** everywhere this repo wires themes
+together (`DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`**, Neovim
+**`config/nvim/lua/config/theme.lua`**, Ghostty **`theme-gruvbox.inc`**, btop
+**`gruvbox_dark_hard.theme`**, fastfetch **`config.jsonc`**, and the Gruvbox
+tmux status snippet). Everforest stays in-repo as alternate files; see
+**[docs/themes/README.md](docs/themes/README.md)** for the checklist.
+
+**Ghostty + tmux:** use **`set -g mouse on`** in tmux (see **`config/tmux/includes/base.conf`**)
+so two-finger scroll scrolls the session instead of Ghostty sending arrow keys
+that trigger **zsh** history search. Details are in **docs/themes/README.md**.
 
 ### XDG directories
 
@@ -62,7 +68,7 @@ From the repository root, **`./setup.sh`**:
 ## CI
 
 GitHub Actions runs **StyLua** on `config/nvim` and **ShellCheck** on
-**`setup.sh`** and **`home/zsh/*.zsh`**.
+**`setup.sh`**, **`home/.zshrc`**, **`home/zsh/*.zsh`**, and **`home/zsh/themes/*.zsh`**.
 
 ## What's Inside
 

@@ -1,8 +1,11 @@
 # UI themes (Gruvbox vs Everforest)
 
-Everything is **Gruvbox dark hard** by default. Everforest assets stay in-repo as alternates you can switch to in a few places.
+If you **do not change anything**, you get **Gruvbox dark hard** consistently:
+`DOTFILES_THEME` defaults in **`home/zsh/theme-env.sh`**, Neovim **`config/nvim/lua/config/theme.lua`**, Ghostty **`theme-gruvbox.inc`**, btop, fastfetch, and tmux’s Gruvbox status theme.
 
-## One switch (Zsh + Tmux + Oh My Posh)
+Everforest assets stay in-repo as alternates; switch only when you want to.
+
+Everything below assumes you might override **`DOTFILES_THEME`** or individual app configs.
 
 | Control | Values | Effect |
 |--------|--------|--------|
@@ -20,6 +23,14 @@ Machine-only override (no git edits): add `export DOTFILES_THEME=everforest` to 
 Edit **`config/nvim/lua/config/theme.lua`**: return `"gruvbox"` or `"everforest"` (each has `lua/plugins/<name>.lua`). Run `:Lazy sync` after changing.
 
 ## Ghostty
+
+### Touchpad scroll vs shell history (with tmux)
+
+On macOS, **Ghostty** maps two-finger scroll to **arrow keys** when the app is in the **alternate screen** and the running program has **not** enabled mouse reporting (see [Ghostty discussion #4617](https://github.com/orgs/ghostty-org/discussions/4617)). **zsh** often binds `^[[A` / `^[[B` to **history search**, so scrolling feels like “command history” instead of **scrollback**.
+
+**Fix (used here):** `set -g mouse on` in tmux (`config/tmux/includes/base.conf`) so tmux captures wheel events. Reload: `prefix` + `r`.
+
+### Theme files
 
 Main **`config/ghostty/config`** includes **`theme-gruvbox.inc`** or **`theme-everforest.inc`** (comment/uncomment the `config-file` line).
 
@@ -49,5 +60,5 @@ jq -e . < config/oh-my-posh/themes/everforest-amro.omp.json
 
 ## Tmux layout
 
-- **`config/tmux/includes/base.conf`** — bindings, TPM (no colors).
+- **`config/tmux/includes/base.conf`** — bindings, mouse (**`mouse on`** for Ghostty scroll — see **Ghostty** above), TPM.
 - **`config/tmux/themes/gruvbox.conf`** / **`everforest.conf`** — status line colors only.

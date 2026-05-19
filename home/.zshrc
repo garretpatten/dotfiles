@@ -102,6 +102,7 @@ alias home="cd && clear && echo '' && fastfetch && ls"
 alias kanye="curl -s https://api.kanye.rest | jq '.quote'"
 alias ls="eza --color=always --icons=always"
 alias lls="eza -la"
+main() { bash "$HOME/Projects/system-scripts/tmux/setup-main.sh" "$@"; }
 alias mdlint='npx markdownlint-cli2 "**/*.md" "#node_modules"'
 alias neo="clear && echo '' && fastfetch"
 alias prettier="npx prettier --write ."
