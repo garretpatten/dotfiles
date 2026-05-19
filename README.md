@@ -59,6 +59,41 @@ After linking: **Ghostty**, **Kitty**, **Neovim**, **tmux** module layout, etc.
 resolve against **`~/.config`**. **`home/.tmux.conf`** assumes
 **`~/.config/tmux/includes/base.conf`** exists.
 
+## Embedding as a submodule (or vendored copy)
+
+Some projects ship this repo under a nested path (for example
+**`src/dotfiles/`** in [macOS-setup-scripts]). In that layout, keep these in mind:
+
+[macOS-setup-scripts]: https://github.com/garretpatten/macOS-setup-scripts
+
+- **`DOTFILES` is the dotfiles checkout root**, not the parent repository. Your
+  shell resolves it via **`~/.dotfiles_path`** (often written by parent
+  provisioning scripts), auto-discovery under **`~/Projects/dotfiles`**, or
+  **`export DOTFILES=…`** in **`~/.local_extras`**. If you move from a submodule
+  path to a standalone clone, refresh **`~/.dotfiles_path`** or **`DOTFILES`**.
+- **Two Git histories**: Changes land in **this** repository first. The parent then
+  records the new submodule commit with **`git add <submodule-path>`** and its own
+  commit. **`git submodule update --init`** (or **`--remote`**) only fetches what
+  the parent has pinned.
+- **Parent scripts may copy a subset of `config/`**. For example, one phase might
+  install terminals and another Neovim; that is not always the full **`config/`**
+  tree. To mirror **everything** under **`~/.config/<app>/`**, run from **this**
+  repo (submodule directory is fine):
+
+  ```bash
+  ./setup.sh --link-xdg-config
+  ```
+
+  That is especially relevant if **`home/.tmux.conf`** uses the modular loader
+  (**`source-file ~/.config/tmux/...`**) — you need **`config/tmux/`** present
+  under **`~/.config/tmux`** (symlink or copy). Older **inline-only** **`home/.tmux.conf`**
+  files self-contained without **`~/.config/tmux`** are an exception.
+
+- **Node tooling for this repo** (Prettier, markdownlint, etc.) uses
+  **`package.json` here**. A parent project’s **`npm ci`** at its own root does
+  not replace **`(cd path/to/dotfiles && npm ci)`** when you lint or develop
+  **inside** the dotfiles tree.
+
 ## CI
 
 GitHub Actions runs **StyLua** on `config/nvim` and **ShellCheck** on
