@@ -3,6 +3,8 @@ for _, name in ipairs({
   "gruvbox",
   "telescope",
   "treesitter",
+  "lsp",
+  "lint",
   "cmp",
   "extra",
   "ui",

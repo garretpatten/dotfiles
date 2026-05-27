@@ -11,14 +11,11 @@ vim.opt.foldenable = true
 vim.opt.guifont = "Fira Code:h12"
 vim.opt.wrap = false
 vim.opt.re = 0
-vim.opt.shiftwidth = 2
 vim.opt.showcmd = true
 vim.opt.showmatch = true
 vim.opt.showmode = true
-vim.opt.softtabstop = 2
 vim.opt.termguicolors = true
 vim.opt.wildmode = "longest,list"
-vim.cmd("syntax on")
 
 -- Files -----------------------------------------------------
 vim.cmd("filetype on")
@@ -27,9 +24,11 @@ vim.cmd("filetype indent on")
 
 -- Misc -----------------------------------------------------
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
 vim.opt.backup = false
 vim.opt.backupdir = vim.fn.stdpath("cache") .. "/vim"
-vim.opt.binary = true
 vim.opt.clipboard = "unnamedplus"
 vim.opt.compatible = false
 vim.opt.encoding = "utf-8"
@@ -56,7 +55,7 @@ vim.opt.autoindent = true
 vim.opt.expandtab = true
 vim.opt.listchars = { space = "·", tab = "=>" }
 vim.opt.list = true
-vim.opt.shiftwidth = 4
+vim.opt.shiftwidth = 2
 vim.opt.smartindent = true
-vim.opt.softtabstop = 4
-vim.opt.tabstop = 4
+vim.opt.softtabstop = 2
+vim.opt.tabstop = 2

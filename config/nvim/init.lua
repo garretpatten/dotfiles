@@ -1,6 +1,10 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+-- Ensure Homebrew Ruby gems (e.g. solargraph) are visible to Mason regardless
+-- of how Neovim was launched (GUI, tmux, etc. may not source ~/.zshrc).
+vim.env.PATH = "/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/4.0.0/bin:" .. vim.env.PATH
+
 require("config")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
