@@ -1,5 +1,3 @@
-node_modules/
-
 # Local editor / OS noise (keep repo clones clean)
 .netrwhist
 main.shada
@@ -7,3 +5,9 @@ main.shada.tmp*
 *.shada.tmp.*
 nvim.log
 .DS_Store
+
+# Node
+node_modules/
+
+# Tmux
+config/tmux/plugins/
