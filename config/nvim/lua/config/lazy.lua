@@ -9,6 +9,7 @@ return {
     colorscheme = { "habamax" },
   },
   checker = { enabled = false },
+  rocks = { enabled = false },
   ui = {
     border = "rounded",
   },

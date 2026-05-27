@@ -24,6 +24,9 @@ vim.cmd("filetype indent on")
 
 -- Misc -----------------------------------------------------
 vim.g.loaded_perl_provider = 0
+vim.g.loaded_node_provider = 0
+vim.g.loaded_python3_provider = 0
+vim.g.loaded_ruby_provider = 0
 vim.opt.backup = false
 vim.opt.backupdir = vim.fn.stdpath("cache") .. "/vim"
 vim.opt.clipboard = "unnamedplus"

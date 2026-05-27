@@ -102,7 +102,7 @@ return {
           typescript = { "prettierd", "prettier", stop_after_first = true },
           python = { "ruff_format" },
           go = { "gofmt" },
-          rust = { "rustfmt" },
+          rust = { "rustfmt", lsp_fallback = true },
           json = { "prettierd", "prettier", stop_after_first = true },
           yaml = { "prettierd", "prettier", stop_after_first = true },
           markdown = { "prettierd", "prettier", stop_after_first = true },
