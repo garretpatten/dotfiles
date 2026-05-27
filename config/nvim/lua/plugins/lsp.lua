@@ -42,27 +42,27 @@ return {
           "bashls",
           "jsonls",
           "yamlls",
-          "taplo",       -- TOML
-          "marksman",    -- Markdown
+          "taplo", -- TOML
+          "marksman", -- Markdown
 
           -- Web
-          "ts_ls",       -- JavaScript & TypeScript
+          "ts_ls", -- JavaScript & TypeScript
           "html",
           "cssls",
 
           -- Systems & compiled
-          "gopls",       -- Go
+          "gopls", -- Go
           "rust_analyzer",
-          "clangd",      -- C / C++
+          "clangd", -- C / C++
 
           -- Scripting
-          "pyright",     -- Python
-          "solargraph",  -- Ruby
+          "pyright", -- Python
+          "solargraph", -- Ruby
 
           -- Infra
           "dockerls",
           "terraformls",
-          "sqls",         -- SQL (Go-based; sqlls blocked by nCino npm proxy)
+          "sqls", -- SQL (Go-based; sqlls blocked by nCino npm proxy)
         },
         automatic_installation = true,
         handlers = {
