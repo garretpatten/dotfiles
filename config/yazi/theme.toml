@@ -1,0 +1,99 @@
+# Gruvbox Dark Hard palette aligned with the rest of this dotfiles repo.
+
+[mgr]
+cwd = { fg = "#98971a", bold = true }
+
+find_keyword = { fg = "#1d2021", bg = "#d3869b", bold = true, italic = true, underline = true }
+find_position = { fg = "#ebdbb2", bg = "#458588", bold = true, italic = true }
+
+symlink_target = { fg = "#689d6a", italic = true }
+
+marker_copied = { fg = "#b8bb26", bg = "#b8bb26" }
+marker_cut = { fg = "#fb4934", bg = "#fb4934" }
+marker_marked = { fg = "#8ec07c", bg = "#8ec07c" }
+marker_selected = { fg = "#fabd2f", bg = "#fabd2f" }
+marker_symbol = "│"
+
+count_copied = { fg = "#1d2021", bg = "#b8bb26" }
+count_cut = { fg = "#1d2021", bg = "#fb4934" }
+count_selected = { fg = "#1d2021", bg = "#fabd2f" }
+
+border_symbol = "│"
+border_style = { fg = "#928374" }
+
+syntect_theme = ""
+
+[tabs]
+active = { fg = "#1d2021", bg = "#83a598", bold = true }
+inactive = { fg = "#a89984", bg = "#282828" }
+
+[mode]
+normal_main = { fg = "#1d2021", bg = "#83a598", bold = true }
+normal_alt = { fg = "#83a598", bg = "#282828" }
+
+select_main = { fg = "#1d2021", bg = "#d79921", bold = true }
+select_alt = { fg = "#d79921", bg = "#282828" }
+
+unset_main = { fg = "#1d2021", bg = "#d3869b", bold = true }
+unset_alt = { fg = "#d3869b", bg = "#282828" }
+
+[status]
+perm_sep = { fg = "#928374" }
+perm_type = { fg = "#83a598" }
+perm_read = { fg = "#b8bb26" }
+perm_write = { fg = "#d79921" }
+perm_exec = { fg = "#fb4934" }
+
+progress_label = { fg = "#ebdbb2", bold = true }
+progress_normal = { fg = "#458588", bg = "#1d2021" }
+progress_error = { fg = "#fb4934", bg = "#1d2021" }
+
+[which]
+cols = 3
+mask = { bg = "#1d2021" }
+cand = { fg = "#83a598" }
+rest = { fg = "#ebdbb2" }
+desc = { fg = "#8ec07c" }
+separator = " -> "
+separator_style = { fg = "#928374" }
+
+[pick]
+border = { fg = "#83a598" }
+active = { fg = "#fabd2f", bold = true }
+inactive = { fg = "#a89984" }
+
+[input]
+border = { fg = "#83a598" }
+title = { fg = "#83a598" }
+value = { fg = "#ebdbb2" }
+selected = { fg = "#1d2021", bg = "#fabd2f" }
+
+[cmp]
+border = { fg = "#83a598" }
+active = { fg = "#fabd2f", bold = true }
+inactive = { fg = "#a89984" }
+
+[tasks]
+border = { fg = "#83a598" }
+title = { fg = "#83a598" }
+hovered = { fg = "#1d2021", bg = "#fabd2f" }
+
+[help]
+on = { fg = "#b8bb26" }
+run = { fg = "#d3869b" }
+desc = { fg = "#ebdbb2" }
+hovered = { fg = "#1d2021", bg = "#fabd2f", bold = true }
+footer = { fg = "#a89984", bg = "#282828" }
+
+[filetype]
+rules = [
+  { mime = "image/*", fg = "#8ec07c" },
+  { mime = "{audio,video}/*", fg = "#458588" },
+  { mime = "application/{zip,rar,7z*,tar,gzip,xz,zstd,bzip*,lzma,compress,archive,cpio,arj,xar,ms-cab*}", fg = "#d3869b" },
+  { mime = "application/{pdf,doc,rtf}", fg = "#d79921" },
+  { mime = "application/json", fg = "#8ec07c" },
+  { mime = "*/javascript", fg = "#fabd2f" },
+  { url = "*/", fg = "#83a598" },
+  { url = "*", is = "exec", fg = "#b8bb26" },
+  { url = "*", fg = "#ebdbb2" },
+]
