@@ -54,7 +54,6 @@ return {
           "gopls",       -- Go
           "rust_analyzer",
           "clangd",      -- C / C++
-          "jdtls",       -- Java
 
           -- Scripting
           "pyright",     -- Python
@@ -63,7 +62,7 @@ return {
           -- Infra
           "dockerls",
           "terraformls",
-          "sqlls",
+          "sqls",         -- SQL (Go-based; sqlls blocked by nCino npm proxy)
         },
         automatic_installation = true,
         handlers = {
@@ -84,18 +83,6 @@ return {
                   workspace = { library = vim.api.nvim_get_runtime_file("", true) },
                   telemetry = { enable = false },
                 },
-              },
-            })
-          end,
-          -- jdtls requires a data directory per-project; use the built-in defaults
-          ["jdtls"] = function()
-            require("lspconfig").jdtls.setup({
-              capabilities = capabilities,
-              on_attach = on_attach,
-              cmd = {
-                "jdtls",
-                "-data",
-                vim.fn.stdpath("cache") .. "/jdtls/" .. vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t"),
               },
             })
           end,
