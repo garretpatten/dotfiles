@@ -40,23 +40,6 @@ Automation can copy or symlink entire trees without per-file mapping:
 Tools that respect these (including many terminals and Neovim) can find configs
 under `~/.config` without littering `$HOME`.
 
-## Setup script
-
-From the repository root:
-
-- **`./setup.sh`** — verifies **`config/`** and **`home/`**, runs git submodule
-  helpers when **`.gitmodules`** exists (safe to rerun), then runs optional
-  headless Neovim **Lazy**/Tree-sitter steps when **`nvim`** is on `PATH`.
-
-- **`./setup.sh --link-xdg-config`** — symlinks every **`config/<app>/`**
-  tree to **`$XDG_CONFIG_HOME/<app>/`** (default **`~/.config/<app>/`**). If you
-  already have a **real directory** there, it is renamed to
-  **`*.dotfiles-bak-<timestamp>`** first.
-
-After linking: **Ghostty**, **Kitty**, **Neovim**, **tmux** module layout, etc.
-resolve against **`~/.config`**. **`home/.tmux.conf`** assumes
-**`~/.config/tmux/includes/base.conf`** exists.
-
 ## Embedding as a submodule (or vendored copy)
 
 Some projects ship this repo under a nested path (for example
@@ -65,7 +48,7 @@ Some projects ship this repo under a nested path (for example
 [macOS-setup-scripts]: https://github.com/garretpatten/macOS-setup-scripts
 
 - **OS-specific zsh snippets** live in **`config/zsh/`** and are picked up
-  automatically once **`~/.config/zsh`** is symlinked (see setup script below).
+  automatically once **`~/.config/zsh`** is symlinked by the provisioning scripts.
   No path variables need to point at the repo root.
 - **Two Git histories**: Changes land in **this** repository first. The parent then
   records the new submodule commit with **`git add <submodule-path>`** and its own
@@ -73,17 +56,8 @@ Some projects ship this repo under a nested path (for example
   the parent has pinned.
 - **Parent scripts may copy a subset of `config/`**. For example, one phase might
   install terminals and another Neovim; that is not always the full **`config/`**
-  tree. To mirror **everything** under **`~/.config/<app>/`**, run from **this**
-  repo (submodule directory is fine):
-
-  ```bash
-  ./setup.sh --link-xdg-config
-  ```
-
-  That is especially relevant if **`home/.tmux.conf`** uses the modular loader
-  (**`source-file ~/.config/tmux/...`**) — you need **`config/tmux/`** present
-  under **`~/.config/tmux`** (symlink or copy). Older **inline-only** **`home/.tmux.conf`**
-  files self-contained without **`~/.config/tmux`** are an exception.
+  tree. Setup and provisioning scripts live in the parent repository (e.g.
+  [macOS-setup-scripts]); this repo contains only configs, not scripts.
 
 - **Node tooling for this repo** (Prettier, markdownlint, etc.) uses
   **`package.json` here**. A parent project’s **`npm ci`** at its own root does
