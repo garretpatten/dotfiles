@@ -12,12 +12,3 @@ export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/4.0.0/bin:$P
 
 ### Aliases
 alias update="brew upgrade && brew update && brew autoremove && brew cleanup -s"
-
-### Oh My Posh (Gruvbox dark hard default; switch with DOTFILES_THEME — see home/zsh/theme-env.sh)
-if command -v oh-my-posh >/dev/null 2>&1 && [[ -n "${DOTFILES:-}" ]]; then
-  _omp_cfg="${DOTFILES}/home/zsh/oh-my-posh-theme.zsh"
-  if [[ -f "$_omp_cfg" ]]; then
-    # shellcheck disable=SC1091
-    . "$_omp_cfg"
-  fi
-fi

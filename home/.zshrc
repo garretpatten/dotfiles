@@ -5,34 +5,8 @@ export XDG_DATA_HOME="${XDG_DATA_HOME:-$HOME/.local/share}"
 export XDG_CACHE_HOME="${XDG_CACHE_HOME:-$HOME/.cache}"
 export XDG_STATE_HOME="${XDG_STATE_HOME:-$HOME/.local/state}"
 
-### Dotfiles root (override in ~/.local_extras if your clone lives elsewhere)
-if [[ -z "${DOTFILES:-}" ]]; then
-  _df_cache="$HOME/.dotfiles_path"
-  if [[ -f "$_df_cache" ]]; then
-    IFS= read -r _cached < "$_df_cache" || true
-    if [[ -n "${_cached:-}" && -d "$_cached/home/zsh" ]]; then
-      DOTFILES="$_cached"
-    fi
-  fi
-  if [[ -z "${DOTFILES:-}" ]]; then
-    for _df in "$HOME/.config/dotfiles" "$HOME/Projects/dotfiles" "$HOME/dotfiles"; do
-      if [[ -d "$_df/home/zsh" ]]; then
-        DOTFILES="$_df"
-        printf '%s\n' "$DOTFILES" > "$_df_cache"
-        break
-      fi
-    done
-  fi
-  unset _df_cache _cached _df
-fi
-export DOTFILES
-
-### Default UI theme (Gruvbox dark hard; override with DOTFILES_THEME / ~/.local_extras)
-if [[ -n "${DOTFILES:-}" && -r "$DOTFILES/home/zsh/theme-env.sh" ]]; then
-  # Dynamic path prevents shellcheck following; file is bundled in home/zsh/theme-env.sh
-  # shellcheck disable=SC1091
-  . "$DOTFILES/home/zsh/theme-env.sh"
-fi
+### Default UI theme (gruvbox; override with DOTFILES_THEME or persist in ~/.local_extras)
+export DOTFILES_THEME="${DOTFILES_THEME:-gruvbox}"
 
 ### Cursor / VS Code integrated terminal (alternate-screen leak → wheel mimics arrows)
 # When the tty is stuck in alternate-screen semantics, the wheel sends ^[[A/B;
@@ -43,52 +17,65 @@ if [[ "${TERM_PROGRAM:-}" == vscode && -z "${DISABLE_DOTFILES_VSCODE_ALTSCR_FIX:
     [[ -t 1 ]] || return 0
     printf '\033[?1049l'
   }
-  # zsh precmd_functions; harmless if empty (POSIX bash array syntax parses under shellcheck).
   precmd_functions+=(_dotfiles_precmd_vscode_leave_alt_scr)
 fi
 
-### OS-specific plugins, update aliases, and theme examples — see home/zsh/*.zsh
-if [[ -n "${DOTFILES:-}" ]]; then
-  case "$(uname -s)" in
-    Darwin)
+### OS-specific plugins and update aliases — see ~/.config/zsh/*.zsh
+_zsh_cfg="${XDG_CONFIG_HOME}/zsh"
+case "$(uname -s)" in
+  Darwin)
+    # shellcheck source=/dev/null
+    [[ -f "$_zsh_cfg/darwin.zsh" ]] && source "$_zsh_cfg/darwin.zsh"
+    ;;
+  Linux)
+    if [[ -r /etc/os-release ]]; then
       # shellcheck source=/dev/null
-      [[ -f "$DOTFILES/home/zsh/darwin.zsh" ]] && source "$DOTFILES/home/zsh/darwin.zsh"
-      ;;
-    Linux)
-      if [[ -r /etc/os-release ]]; then
-        # shellcheck source=/dev/null
-        . /etc/os-release
-        case "${ID:-}" in
-          debian | ubuntu | linuxmint)
-            # shellcheck source=/dev/null
-            [[ -f "$DOTFILES/home/zsh/ubuntu.zsh" ]] && source "$DOTFILES/home/zsh/ubuntu.zsh"
-            ;;
-          arch | archlinux)
-            # shellcheck source=/dev/null
-            [[ -f "$DOTFILES/home/zsh/arch.zsh" ]] && source "$DOTFILES/home/zsh/arch.zsh"
-            ;;
-          fedora)
-            # shellcheck source=/dev/null
-            [[ -f "$DOTFILES/home/zsh/fedora.zsh" ]] && source "$DOTFILES/home/zsh/fedora.zsh"
-            ;;
-        esac
-      fi
-      ;;
-  esac
+      . /etc/os-release
+      case "${ID:-}" in
+        debian | ubuntu | linuxmint)
+          # shellcheck source=/dev/null
+          [[ -f "$_zsh_cfg/ubuntu.zsh" ]] && source "$_zsh_cfg/ubuntu.zsh"
+          ;;
+        arch | archlinux)
+          # shellcheck source=/dev/null
+          [[ -f "$_zsh_cfg/arch.zsh" ]] && source "$_zsh_cfg/arch.zsh"
+          ;;
+        fedora)
+          # shellcheck source=/dev/null
+          [[ -f "$_zsh_cfg/fedora.zsh" ]] && source "$_zsh_cfg/fedora.zsh"
+          ;;
+      esac
+    fi
+    ;;
+esac
+unset _zsh_cfg
+
+### Oh My Posh
+if command -v oh-my-posh >/dev/null 2>&1; then
+  _omp_cfg="${XDG_CONFIG_HOME}/zsh/oh-my-posh-theme.zsh"
+  # shellcheck source=/dev/null
+  [[ -f "$_omp_cfg" ]] && source "$_omp_cfg"
+  unset _omp_cfg
 fi
 
-# Highlighting colors aligned with Gruvbox Dark Hard (TerminalColors). Keys are
-# consumed by zsh-syntax-highlighting (not Bash variable names despite SC2154).
-# shellcheck disable=SC2154,SC2034
-ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
-# shellcheck disable=SC2154
-ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
-# shellcheck disable=SC2154
-ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
-# shellcheck disable=SC2154,SC2034
-ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
+### Syntax highlighting colors (theme-aware)
+# shellcheck disable=SC2034,SC2154
+case "${DOTFILES_THEME:-gruvbox}" in
+  everforest)
+    ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'
+    ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'
+    ;;
+  *)
+    ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
+    ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
+    ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
+    ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
+    ;;
+esac
 
-### Paths ###
+### Paths
 #
 # LM Studio CLI
 export PATH="$PATH:$HOME/.lmstudio/bin"
@@ -96,7 +83,7 @@ export PATH="$PATH:$HOME/.lmstudio/bin"
 # Proton Pass CLI
 export PATH="$HOME/.local/bin:$PATH"
 
-### Aliases ###
+### Aliases
 #
 # Development
 alias acp='git add . && git commit -m "chore: make some updates" && git push origin'
@@ -121,23 +108,29 @@ alias status="protonvpn-cli status"
 alias ts='bash "$HOME/Projects/tmux-scripts/tmux-setup.sh"'
 alias vpn="protonvpn-cli connect"
 
-### Environment Variables ###
+### Environment Variables
 #
-# Nvim
-export NVIM=nvim
-export EDITOR="$NVIM"
+export EDITOR="nvim"
 export NVM_DIR="$HOME/.nvm"
-# shellcheck disable=SC1091
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-# shellcheck disable=SC1091
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
-### History Setup ###
+### NVM (lazy-loaded — first call to nvm/node/npm/npx triggers real load)
+_nvm_lazy_load() {
+  unset -f nvm node npm npx
+  # shellcheck disable=SC1091
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+  # shellcheck disable=SC1091
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
+}
+nvm()  { _nvm_lazy_load; nvm  "$@"; }
+node() { _nvm_lazy_load; node "$@"; }
+npm()  { _nvm_lazy_load; npm  "$@"; }
+npx()  { _nvm_lazy_load; npx  "$@"; }
+
+### History
 #
 HISTFILE=$HOME/.zhistory
-# shellcheck disable=SC2034
-SAVEHIST=1000
-HISTSIZE=999
+SAVEHIST=50000
+HISTSIZE=50000
 setopt share_history
 setopt hist_expire_dups_first
 setopt hist_ignore_dups

@@ -22,22 +22,9 @@ Automation can copy or symlink entire trees without per-file mapping:
   machine-specific locations where possible (e.g. Neovim uses `stdpath()` for
   cache/state; Alacritty theme imports use `$HOME/.config/...`).
 - **`home/`** — Dotfiles meant for the home directory (e.g. `.zshrc`,
-  `.bashrc`, `.tmux.conf`, `.vimrc`). OS-specific zsh snippets live under
-  **`home/zsh/`** and are sourced from **`home/.zshrc`** after resolving the
-  repo root. Tmux 3.1+ can use `~/.config/tmux/tmux.conf`; this repo still ships
-  **`~/.tmux.conf`** for broad compatibility.
-
-### `DOTFILES` and shell startup
-
-`home/.zshrc` sets **`DOTFILES`** to the repository root by:
-
-1. Reading **`~/.dotfiles_path`** if it exists and still points at a tree that
-   contains `home/zsh/`, or
-2. Searching a few common locations once, then writing the result to
-   **`~/.dotfiles_path`** so the next login avoids repeated filesystem checks.
-
-Override **`DOTFILES`** in **`~/.local_extras`** if your clone lives somewhere
-else.
+  `.bashrc`, `.tmux.conf`, `.vimrc`). Tmux 3.1+ can use
+  `~/.config/tmux/tmux.conf`; this repo still ships **`~/.tmux.conf`** for
+  broad compatibility.
 
 ### XDG directories
 
@@ -77,11 +64,9 @@ Some projects ship this repo under a nested path (for example
 
 [macOS-setup-scripts]: https://github.com/garretpatten/macOS-setup-scripts
 
-- **`DOTFILES` is the dotfiles checkout root**, not the parent repository. Your
-  shell resolves it via **`~/.dotfiles_path`** (often written by parent
-  provisioning scripts), auto-discovery under **`~/Projects/dotfiles`**, or
-  **`export DOTFILES=…`** in **`~/.local_extras`**. If you move from a submodule
-  path to a standalone clone, refresh **`~/.dotfiles_path`** or **`DOTFILES`**.
+- **OS-specific zsh snippets** live in **`config/zsh/`** and are picked up
+  automatically once **`~/.config/zsh`** is symlinked (see setup script below).
+  No path variables need to point at the repo root.
 - **Two Git histories**: Changes land in **this** repository first. The parent then
   records the new submodule commit with **`git add <submodule-path>`** and its own
   commit. **`git submodule update --init`** (or **`--remote`**) only fetches what
