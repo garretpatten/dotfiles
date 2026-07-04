@@ -60,20 +60,23 @@ fi
 
 ### Syntax highlighting colors (theme-aware)
 # shellcheck disable=SC2034,SC2154
-case "${DOTFILES_THEME:-gruvbox}" in
-  everforest)
-    ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
-    ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'
-    ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'
-    ;;
-  *)
-    ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
-    ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
-    ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
-    ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
-    ;;
-esac
+{
+  typeset -A ZSH_HIGHLIGHT_STYLES
+  case "${DOTFILES_THEME:-gruvbox}" in
+    everforest)
+      ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
+      ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'
+      ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'
+      ;;
+    *)
+      ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
+      ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
+      ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
+      ;;
+  esac
+}
 
 ### Paths
 #
@@ -129,6 +132,7 @@ npx()  { _nvm_lazy_load; npx  "$@"; }
 ### History
 #
 HISTFILE=$HOME/.zhistory
+# shellcheck disable=SC2034
 SAVEHIST=50000
 HISTSIZE=50000
 setopt share_history
