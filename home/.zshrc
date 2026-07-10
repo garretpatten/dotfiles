@@ -59,24 +59,19 @@ if command -v oh-my-posh >/dev/null 2>&1; then
 fi
 
 ### Syntax highlighting colors (theme-aware)
-# shellcheck disable=SC2034,SC2154
-{
-  typeset -A ZSH_HIGHLIGHT_STYLES
-  case "${DOTFILES_THEME:-gruvbox}" in
-    everforest)
-      ZSH_HIGHLIGHT_STYLES[command]='fg=#a7c080,bold'
-      ZSH_HIGHLIGHT_STYLES[alias]='fg=#a7c080,bold'
-      ZSH_HIGHLIGHT_STYLES[path]='fg=#d3c6aa'
-      ZSH_HIGHLIGHT_STYLES[error]='fg=#e67e80,underline'
-      ;;
-    *)
-      ZSH_HIGHLIGHT_STYLES[command]='fg=#b8bb26,bold'
-      ZSH_HIGHLIGHT_STYLES[alias]='fg=#b8bb26,bold'
-      ZSH_HIGHLIGHT_STYLES[path]='fg=#ebdbb2'
-      ZSH_HIGHLIGHT_STYLES[error]='fg=#fb4934,underline'
-      ;;
-  esac
-}
+# Theme files live in ~/.config/zsh/themes and are loaded after the
+# OS-specific plugin files source zsh-syntax-highlighting.
+# shellcheck source=/dev/null
+case "${DOTFILES_THEME:-gruvbox}" in
+  everforest)
+    [[ -f "${XDG_CONFIG_HOME}/zsh/themes/everforest-syntax.zsh" ]] &&
+      source "${XDG_CONFIG_HOME}/zsh/themes/everforest-syntax.zsh"
+    ;;
+  *)
+    [[ -f "${XDG_CONFIG_HOME}/zsh/themes/gruvbox-syntax.zsh" ]] &&
+      source "${XDG_CONFIG_HOME}/zsh/themes/gruvbox-syntax.zsh"
+    ;;
+esac
 
 ### Paths
 #
