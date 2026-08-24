@@ -9,22 +9,22 @@
       "options": {
         "baseURL": "http://localhost:11434/v1",
         "headers": {
-          "X-OpenCode-Stream": "false"
+          "X-OpenCode-Stream": "false",
         },
-        "num_ctx": 32768
+        "num_ctx": 32768,
       },
       "models": {
         "qwen3.5:9b": {
           "name": "qwen3.5:9b",
           "toolCallFormat": "qwen3-coder",
-          "tools": true
+          "tools": true,
         },
         "qwen-14b-large-ctx:latest": {
           "name": "qwen-14b-large-ctx",
           "toolCallFormat": "auto",
-          "tools": true
-        }
-      }
-    }
-  }
+          "tools": true,
+        },
+      },
+    },
+  },
 }
