@@ -1,33 +1,13 @@
 #!/bin/bash
 # Pre-commit hook: scan staged changes with betterleaks for verified secrets.
-# Supports Ubuntu (apt) and macOS (Homebrew). Passes through gracefully on
-# unsupported platforms, install failures, or betterleaks execution errors.
+# Installs betterleaks via apt or Homebrew when missing. Passes through
+# gracefully when no supported package manager is available or when betterleaks
+# encounters an execution error.
 
 set -u
 
-_detect_os() {
-  case "$(uname -s)" in
-    Linux)
-      if [[ -r /etc/os-release ]]; then
-        # shellcheck source=/dev/null
-        . /etc/os-release
-        case "${ID:-}" in
-          ubuntu) echo "ubuntu" ;;
-          *) echo "unsupported" ;;
-        esac
-      else
-        echo "unsupported"
-      fi
-      ;;
-    Darwin) echo "macos" ;;
-    *) echo "unsupported" ;;
-  esac
-}
-
 _install_betterleaks() {
-  local os="$1"
-
-  if [[ "$os" == "ubuntu" ]] && apt --version >/dev/null 2>&1; then
+  if apt --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via apt..."
     if ! sudo apt-get update >/dev/null 2>&1 || ! sudo apt-get install -y betterleaks >/dev/null 2>&1; then
       echo "Warning: apt installation of betterleaks did not work as intended."
@@ -36,7 +16,7 @@ _install_betterleaks() {
     return 0
   fi
 
-  if [[ "$os" == "macos" ]] && brew --version >/dev/null 2>&1; then
+  if brew --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via Homebrew..."
     if ! brew install betterleaks >/dev/null 2>&1; then
       echo "Warning: Homebrew installation of betterleaks did not work as intended."
@@ -92,16 +72,8 @@ for path in sorted(paths):
 }
 
 main() {
-  local os
-  os="$(_detect_os)"
-
-  if [[ "$os" == "unsupported" ]]; then
-    echo "Pre-commit hook: current machine is not supported (Ubuntu and macOS only). Skipping betterleaks scan."
-    exit 0
-  fi
-
   if ! command -v betterleaks >/dev/null 2>&1; then
-    if ! _install_betterleaks "$os"; then
+    if ! _install_betterleaks; then
       exit 0
     fi
   fi
