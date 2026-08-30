@@ -1,0 +1,86 @@
+#!/bin/bash
+# Pre-commit hook: scan staged changes with betterleaks for verified secrets.
+# Installs betterleaks via apt or Homebrew when missing. Passes through
+# gracefully when no supported package manager is available or when betterleaks
+# encounters an execution error.
+
+set -u
+
+if ! command -v betterleaks >/dev/null 2>&1; then
+  if apt --version >/dev/null 2>&1; then
+    echo "Pre-commit hook: installing betterleaks via apt..."
+    if ! sudo apt-get update >/dev/null 2>&1 || ! sudo apt-get install -y betterleaks >/dev/null 2>&1; then
+      echo "Warning: apt installation of betterleaks did not work as intended."
+      exit 0
+    fi
+  elif brew --version >/dev/null 2>&1; then
+    echo "Pre-commit hook: installing betterleaks via Homebrew..."
+    if ! brew install betterleaks >/dev/null 2>&1; then
+      echo "Warning: Homebrew installation of betterleaks did not work as intended."
+      exit 0
+    fi
+  else
+    echo "Warning: betterleaks is not installed and no supported package manager (apt/brew) was found. Skipping scan."
+    exit 0
+  fi
+fi
+
+if ! command -v betterleaks >/dev/null 2>&1; then
+  echo "Warning: betterleaks is not installed and could not be installed. Skipping scan."
+  exit 0
+fi
+
+report_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.json")"
+stderr_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.err")"
+trap 'rm -f "$report_file" "$stderr_file"' EXIT
+
+exit_code=0
+betterleaks git . \
+  --pre-commit \
+  --staged \
+  --validation \
+  --validation-status valid \
+  --report-format json \
+  --report-path "$report_file" 2>"$stderr_file" || exit_code=$?
+
+if [[ "$exit_code" -eq 0 ]]; then
+  echo "Pre-commit hook: no verified secrets detected."
+  exit 0
+fi
+
+if [[ -s "$report_file" ]]; then
+  echo "Pre-commit hook failed: a verified secret was detected."
+  echo "The secret must be removed before the commit can be made."
+  echo "Affected file(s):"
+
+  if command -v jq >/dev/null 2>&1; then
+    jq -r '.[] | .Attributes.path // .Fragment.FilePath' "$report_file" | sort -u
+  elif command -v python3 >/dev/null 2>&1; then
+    python3 -c '
+import json, sys
+
+with open(sys.argv[1]) as f:
+    data = json.load(f)
+
+paths = set()
+for item in data:
+    path = item.get("Attributes", {}).get("path") or item.get("Fragment", {}).get("FilePath")
+    if path:
+        paths.add(path)
+
+for path in sorted(paths):
+    print(path)
+' "$report_file"
+  else
+    echo "Install jq or python3 to see the exact file path(s)."
+  fi
+
+  exit 1
+fi
+
+echo "Pre-commit hook: betterleaks did not run correctly."
+if [[ -s "$stderr_file" ]]; then
+  echo "Error output:"
+  cat "$stderr_file"
+fi
+exit 0

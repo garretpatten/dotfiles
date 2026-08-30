@@ -29,7 +29,7 @@ npx markdownlint-cli2 "**/*.md" "#node_modules"
 
 yamllint -f standard .github .yamllint
 
-shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh
+shellcheck home/.bashrc home/.zshrc config/githooks/*
 
 actionlint
 
@@ -56,8 +56,8 @@ changed paths match.
 - **markdownlint-cli2** — `**/*.md`. Check:
   `npx markdownlint-cli2 "**/*.md" "#node_modules"` — Fix manually (`.markdownlint.json`)
 - **yamllint** — `.yml`/`.yaml`. Check: `yamllint -f standard .github .yamllint`
-- **ShellCheck** — `setup.sh`, `home/.bashrc`, `home/.zshrc`, `home/zsh/*.zsh`.
-  Check: `shellcheck setup.sh home/.bashrc home/.zshrc home/zsh/*.zsh` — Keep
+- **ShellCheck** — `home/.bashrc`, `home/.zshrc`, `config/githooks/*`. Check:
+  `shellcheck home/.bashrc home/.zshrc config/githooks/*` — Keep
   `# shellcheck` directives when intentional
 - **actionlint** — `.github/workflows/`, `.github/actions/`. Check: `actionlint`
 - **StyLua** — `config/nvim/**/*.lua`. Check: `stylua --check config/nvim` — Fix:
