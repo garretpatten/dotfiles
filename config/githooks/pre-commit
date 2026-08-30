@@ -6,50 +6,56 @@
 
 set -u
 
-_install_betterleaks() {
+if ! command -v betterleaks >/dev/null 2>&1; then
   if apt --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via apt..."
     if ! sudo apt-get update >/dev/null 2>&1 || ! sudo apt-get install -y betterleaks >/dev/null 2>&1; then
       echo "Warning: apt installation of betterleaks did not work as intended."
-      return 1
+      exit 0
     fi
-    return 0
-  fi
-
-  if brew --version >/dev/null 2>&1; then
+  elif brew --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via Homebrew..."
     if ! brew install betterleaks >/dev/null 2>&1; then
       echo "Warning: Homebrew installation of betterleaks did not work as intended."
-      return 1
+      exit 0
     fi
-    return 0
+  else
+    echo "Warning: betterleaks is not installed and no supported package manager (apt/brew) was found. Skipping scan."
+    exit 0
   fi
+fi
 
-  echo "Warning: betterleaks is not installed and no supported package manager (apt/brew) was found. Skipping scan."
-  return 1
-}
+if ! command -v betterleaks >/dev/null 2>&1; then
+  echo "Warning: betterleaks is not installed and could not be installed. Skipping scan."
+  exit 0
+fi
 
-_run_betterleaks() {
-  local report_path="$1"
+report_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.json")"
+stderr_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.err")"
+trap 'rm -f "$report_file" "$stderr_file"' EXIT
 
-  betterleaks git . \
-    --pre-commit \
-    --staged \
-    --validation \
-    --validation-status valid \
-    --report-format json \
-    --report-path "$report_path"
-}
+exit_code=0
+betterleaks git . \
+  --pre-commit \
+  --staged \
+  --validation \
+  --validation-status valid \
+  --report-format json \
+  --report-path "$report_file" 2>"$stderr_file" || exit_code=$?
 
-_print_valid_paths() {
-  local report_path="$1"
+if [[ "$exit_code" -eq 0 ]]; then
+  echo "Pre-commit hook: no verified secrets detected."
+  exit 0
+fi
+
+if [[ -s "$report_file" ]]; then
+  echo "Pre-commit hook failed: a verified secret was detected."
+  echo "The secret must be removed before the commit can be made."
+  echo "Affected file(s):"
 
   if command -v jq >/dev/null 2>&1; then
-    jq -r '.[] | .Attributes.path // .Fragment.FilePath' "$report_path" | sort -u
-    return 0
-  fi
-
-  if command -v python3 >/dev/null 2>&1; then
+    jq -r '.[] | .Attributes.path // .Fragment.FilePath' "$report_file" | sort -u
+  elif command -v python3 >/dev/null 2>&1; then
     python3 -c '
 import json, sys
 
@@ -64,52 +70,17 @@ for item in data:
 
 for path in sorted(paths):
     print(path)
-' "$report_path"
-    return 0
+' "$report_file"
+  else
+    echo "Install jq or python3 to see the exact file path(s)."
   fi
 
-  echo "Install jq or python3 to see the exact file path(s)."
-}
+  exit 1
+fi
 
-main() {
-  if ! command -v betterleaks >/dev/null 2>&1; then
-    if ! _install_betterleaks; then
-      exit 0
-    fi
-  fi
-
-  if ! command -v betterleaks >/dev/null 2>&1; then
-    echo "Warning: betterleaks is not installed and could not be installed. Skipping scan."
-    exit 0
-  fi
-
-  local report_file stderr_file
-  report_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.json")"
-  stderr_file="$(mktemp "${TMPDIR:-/tmp}/betterleaks-pre-commit.XXXXXX.err")"
-  trap 'rm -f "$report_file" "$stderr_file"' EXIT
-
-  local exit_code=0
-  _run_betterleaks "$report_file" 2>"$stderr_file" || exit_code=$?
-
-  if [[ "$exit_code" -eq 0 ]]; then
-    echo "Pre-commit hook: no verified secrets detected."
-    exit 0
-  fi
-
-  if [[ -s "$report_file" ]]; then
-    echo "Pre-commit hook failed: a verified secret was detected."
-    echo "The secret must be removed before the commit can be made."
-    echo "Affected file(s):"
-    _print_valid_paths "$report_file"
-    exit 1
-  fi
-
-  echo "Pre-commit hook: betterleaks did not run correctly."
-  if [[ -s "$stderr_file" ]]; then
-    echo "Error output:"
-    cat "$stderr_file"
-  fi
-  exit 0
-}
-
-main "$@"
+echo "Pre-commit hook: betterleaks did not run correctly."
+if [[ -s "$stderr_file" ]]; then
+  echo "Error output:"
+  cat "$stderr_file"
+fi
+exit 0
