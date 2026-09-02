@@ -12,11 +12,15 @@ secret is found, the commit is blocked and the affected file path is printed.
 
 The hook is intentionally defensive:
 
-- If betterleaks is missing, it tries to install it via `apt` or `brew`.
+- If betterleaks is missing, it tries to install it via `apt`, `dnf`, `yay`,
+  `brew`, or on Windows via `winget`.
 - If no supported package manager is available, or the install fails, the hook
   passes with a warning instead of blocking the commit.
 - If betterleaks errors for any reason other than finding a verified secret,
   the hook passes and prints the error output.
+
+On Windows Git Bash, MSYS, or Cygwin, the bash `pre-commit` hook delegates to
+`pre-commit.ps1`, which installs and runs betterleaks via PowerShell and winget.
 
 ## Where to place the hook
 

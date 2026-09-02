@@ -1,8 +1,20 @@
 #!/bin/bash
 # Pre-commit hook: scan staged changes with betterleaks for verified secrets.
-# Installs betterleaks via apt or Homebrew when missing. Passes through
-# gracefully when no supported package manager is available or when betterleaks
-# encounters an execution error.
+# Installs betterleaks via apt, dnf, yay, or Homebrew when missing. On Windows
+# Git Bash/MSYS/Cygwin it delegates to the PowerShell implementation. Passes
+# through gracefully when no supported package manager is available or when
+# betterleaks encounters an execution error.
+
+# On Windows Git Bash/MSYS/Cygwin, delegate to the PowerShell implementation.
+case "$(uname -s)" in
+  MINGW* | MSYS* | CYGWIN*)
+    if command -v powershell.exe >/dev/null 2>&1; then
+      exec powershell.exe -ExecutionPolicy Bypass -File "$(dirname "$0")/pre-commit.ps1"
+    fi
+    echo "Warning: running on Windows but powershell.exe was not found. Skipping scan."
+    exit 0
+    ;;
+esac
 
 set -u
 
@@ -13,6 +25,18 @@ if ! command -v betterleaks >/dev/null 2>&1; then
       echo "Warning: apt installation of betterleaks did not work as intended."
       exit 0
     fi
+  elif dnf --version >/dev/null 2>&1; then
+    echo "Pre-commit hook: installing betterleaks via dnf..."
+    if ! sudo dnf install -y betterleaks >/dev/null 2>&1; then
+      echo "Warning: dnf installation of betterleaks did not work as intended."
+      exit 0
+    fi
+  elif yay --version >/dev/null 2>&1; then
+    echo "Pre-commit hook: installing betterleaks via yay..."
+    if ! yay -S --needed --noconfirm betterleaks >/dev/null 2>&1; then
+      echo "Warning: yay installation of betterleaks did not work as intended."
+      exit 0
+    fi
   elif brew --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via Homebrew..."
     if ! brew install betterleaks >/dev/null 2>&1; then
@@ -20,7 +44,7 @@ if ! command -v betterleaks >/dev/null 2>&1; then
       exit 0
     fi
   else
-    echo "Warning: betterleaks is not installed and no supported package manager (apt/brew) was found. Skipping scan."
+    echo "Warning: betterleaks is not installed and no supported package manager (apt/dnf/yay/brew) was found. Skipping scan."
     exit 0
   fi
 fi
