@@ -8,10 +8,10 @@
 # On Windows Git Bash/MSYS/Cygwin, delegate to the PowerShell implementation.
 case "$(uname -s)" in
   MINGW* | MSYS* | CYGWIN*)
-    if command -v powershell.exe >/dev/null 2>&1; then
-      exec powershell.exe -ExecutionPolicy Bypass -File "$(dirname "$0")/pre-commit.ps1"
+    if command -v pwsh.exe >/dev/null 2>&1; then
+      exec pwsh.exe -ExecutionPolicy Bypass -File "$(dirname "$0")/pre-commit.ps1"
     fi
-    echo "Warning: running on Windows but powershell.exe was not found. Skipping scan."
+    echo "Warning: running on Windows but pwsh.exe (PowerShell 7+) was not found. Skipping scan."
     exit 0
     ;;
 esac
