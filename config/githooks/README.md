@@ -12,8 +12,8 @@ secret is found, the commit is blocked and the affected file path is printed.
 
 The hook is intentionally defensive:
 
-- If betterleaks is missing, it tries to install it via `apt`, `dnf`, `yay`,
-  `brew`, or on Windows via `winget`.
+- If betterleaks is missing, it tries to install it via `dnf`, `yay`, `brew`,
+  or `go install`, or on Windows via `winget`.
 - If no supported package manager is available, or the install fails, the hook
   passes with a warning instead of blocking the commit.
 - If betterleaks errors for any reason other than finding a verified secret,

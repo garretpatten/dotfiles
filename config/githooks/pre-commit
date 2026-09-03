@@ -1,6 +1,6 @@
 #!/bin/bash
 # Pre-commit hook: scan staged changes with betterleaks for verified secrets.
-# Installs betterleaks via apt, dnf, yay, or Homebrew when missing. On Windows
+# Installs betterleaks via dnf, yay, Homebrew, or go when missing. On Windows
 # Git Bash/MSYS/Cygwin it delegates to the PowerShell implementation. Passes
 # through gracefully when no supported package manager is available or when
 # betterleaks encounters an execution error.
@@ -19,13 +19,7 @@ esac
 set -u
 
 if ! command -v betterleaks >/dev/null 2>&1; then
-  if apt --version >/dev/null 2>&1; then
-    echo "Pre-commit hook: installing betterleaks via apt..."
-    if ! sudo apt-get update >/dev/null 2>&1 || ! sudo apt-get install -y betterleaks >/dev/null 2>&1; then
-      echo "Warning: apt installation of betterleaks did not work as intended."
-      exit 0
-    fi
-  elif dnf --version >/dev/null 2>&1; then
+  if dnf --version >/dev/null 2>&1; then
     echo "Pre-commit hook: installing betterleaks via dnf..."
     if ! sudo dnf install -y betterleaks >/dev/null 2>&1; then
       echo "Warning: dnf installation of betterleaks did not work as intended."
@@ -43,8 +37,18 @@ if ! command -v betterleaks >/dev/null 2>&1; then
       echo "Warning: Homebrew installation of betterleaks did not work as intended."
       exit 0
     fi
+  elif go version >/dev/null 2>&1; then
+    echo "Pre-commit hook: installing betterleaks via go..."
+    if ! go install github.com/betterleaks/betterleaks@latest >/dev/null 2>&1; then
+      echo "Warning: go installation of betterleaks did not work as intended."
+      exit 0
+    fi
+    # Ensure the freshly installed binary is on PATH for the scan below.
+    if [ -x "${HOME}/go/bin/betterleaks" ]; then
+      export PATH="${HOME}/go/bin:${PATH}"
+    fi
   else
-    echo "Warning: betterleaks is not installed and no supported package manager (apt/dnf/yay/brew) was found. Skipping scan."
+    echo "Warning: betterleaks is not installed and no supported package manager (dnf/yay/brew) or go toolchain was found. Skipping scan."
     exit 0
   fi
 fi
