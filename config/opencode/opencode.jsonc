@@ -1,7 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "opencode-go/kimi-k2.7-code",
   "autoupdate": true,
+  "compaction": {
+    "auto": true,
+    "prune": true,
+    "reserved": 20000
+  },
   "lsp": {
     "typescript": {
       "command": [
@@ -53,4 +57,7 @@
       ],
     },
   },
+  "model": "opencode-go/kimi-k2.7-code",
+  "small_model": "opencode-go/glm-5.3-flash",
+  "subagent_depth": 0,
 }
