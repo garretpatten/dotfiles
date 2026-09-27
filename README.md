@@ -80,6 +80,9 @@ Contribution and automation notes for agents live in [`AGENTS.md`](./AGENTS.md).
 - **Kitty** — `config/kitty/`
 - **Zellij** — `config/zellij/`
 - **Oh My Posh** — Prompt themes (`config/oh-my-posh/`)
+- **PowerShell** — Cross-platform `pwsh` profile
+  (`config/powershell/`, see its
+  [README](./config/powershell/README.md))
 
 ### Editors
 
