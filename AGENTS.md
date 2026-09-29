@@ -123,6 +123,10 @@ When this repo lives under another project (nested path such as **`src/dotfiles`
 - **Security**: `.github/workflows/security-checks.yaml` — Semgrep and TruffleHog
   on pull requests. Avoid adding secrets or high-risk patterns.
 
+Whenever a GitHub workflow is added, all GitHub Action pins in that workflow
+should be updated to point to the full-length commit SHA of the most recent
+release.
+
 ## Useful aliases (from `home/.zshrc`)
 
 If the user’s environment sources this repo’s `home/.zshrc`:
