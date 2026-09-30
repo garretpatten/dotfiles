@@ -29,6 +29,6 @@
     },
   },
   "model": "opencode-go/glm-5.3-flash",
-  "small_model": "opencode-go/kimi-k2.7-code",
+  "small_model": "opencode-go/glm-5.3-flash",
   "subagent_depth": 0,
 }
