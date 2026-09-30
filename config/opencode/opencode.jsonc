@@ -4,60 +4,31 @@
   "compaction": {
     "auto": true,
     "prune": true,
-    "reserved": 20000
+    "reserved": 20000,
   },
   "lsp": {
     "typescript": {
-      "command": [
-        "typescript-language-server",
-        "--stdio"
-      ],
-      "extensions": [
-        ".ts",
-        ".tsx",
-        ".js",
-        ".jsx"
-      ],
+      "command": ["typescript-language-server", "--stdio"],
+      "extensions": [".ts", ".tsx", ".js", ".jsx"],
     },
     "python": {
-      "command": [
-        "pyright-langserver",
-        "--stdio"
-      ],
-      "extensions": [
-        ".py"
-      ],
+      "command": ["pyright-langserver", "--stdio"],
+      "extensions": [".py"],
     },
     "bash": {
-      "command": [
-        "bash-language-server",
-        "start"
-      ],
-      "extensions": [
-        ".sh",
-        ".bash"
-      ],
+      "command": ["bash-language-server", "start"],
+      "extensions": [".sh", ".bash"],
     },
     "yaml": {
-      "command": [
-        "yaml-language-server",
-        "--stdio"
-      ],
-      "extensions": [
-        ".yaml",
-        ".yml"
-      ],
+      "command": ["yaml-language-server", "--stdio"],
+      "extensions": [".yaml", ".yml"],
     },
     "lua": {
-      "command": [
-        "lua-language-server"
-      ],
-      "extensions": [
-        ".lua"
-      ],
+      "command": ["lua-language-server"],
+      "extensions": [".lua"],
     },
   },
-  "model": "opencode-go/kimi-k2.7-code",
-  "small_model": "opencode-go/glm-5.3-flash",
+  "model": "opencode-go/glm-5.3-flash",
+  "small_model": "opencode-go/kimi-k2.7-code",
   "subagent_depth": 0,
 }
