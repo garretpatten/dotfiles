@@ -29,6 +29,11 @@
     },
   },
   "model": "opencode-go/glm-5.3-flash",
+  "permission": {
+    "external_directory": {
+      "~/**": "allow",
+    },
+  },
   "small_model": "opencode-go/glm-5.3-flash",
   "subagent_depth": 0,
 }
