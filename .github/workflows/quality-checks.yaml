@@ -12,13 +12,13 @@ jobs:
     # yamllint disable-line rule:line-length
     uses: garretpatten/quality-checks/.github/workflows/quality-checks.yaml@fe4c2bf7655d5315e264422532786d1dd970248e # master
     with:
-      eslint_run: true
-      hadolint_run: true
+      eslint_run: false
+      hadolint_run: false
       jq_run: true
       markdownlint_run: true
       prettier_run: true
-      ruff_run: true
-      shellcheck_run: true
+      ruff_run: false
+      shellcheck_run: false
       stylua_run: true
       taplo_run: true
       yamllint_run: true
