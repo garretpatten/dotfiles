@@ -1,0 +1,58 @@
+---
+name: Bug report
+description: Incorrect behavior in a config, shell startup file, or editor setup
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Include OS, version, and the config or home-file path involved.
+        Read **CONTRIBUTING.md** before submitting.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Expected vs actual
+      description: What should happen versus what occurred?
+    validations:
+      required: true
+
+  - type: textarea
+    id: repro
+    attributes:
+      label: Reproduction steps
+      description: >
+        Commands or steps, plus the file path under `config/`, `home/`,
+        or `vs-code/`.
+      placeholder: |
+        1. Symlink or copy `config/nvim` to `~/.config/nvim`
+        2. Open Neovim and …
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: >
+        OS, OS version, desktop environment, and package managers when
+        relevant.
+      placeholder: |
+        OS: Fedora 42
+        OS version: …
+        Desktop environment: GNOME
+        Package managers: dnf, npm
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Additional information (optional)
+      description: >
+        Logs, screenshot descriptions, or a CI URL. Redact secrets and
+        private paths.
+      render: plaintext
+    validations:
+      required: false

@@ -1,0 +1,49 @@
+---
+name: Feature request
+description: Suggest a config, shell, editor, docs, or tooling change
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Summarize the gap and where it belongs in the tree.
+        Read **CONTRIBUTING.md** before submitting.
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What changes and intended outcome?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Problem / rationale
+      description: What gap exists today?
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Primary surface
+      options:
+        - config/ (XDG app configs, terminals, Neovim, themes)
+        - home/ (shell startup and home-directory dotfiles)
+        - vs-code/ (editor settings)
+        - docs / CI / community files
+      default: 0
+
+  - type: textarea
+    id: constraints
+    attributes:
+      label: Constraints (optional)
+      description: >
+        Portability, submodule consumers, or machine-specific notes.
+        Do not include secrets.
+      render: plaintext
+    validations:
+      required: false
