@@ -35,8 +35,30 @@
       "enabled": true,
       "oauth": {},
     },
+    "google": {
+      "type": "local",
+      "command": ["node", "/home/garret/Projects/google-mcp-server/dist/index.js"],
+      "enabled": true,
+    },
   },
   "model": "opencode-go/glm-5.3-flash",
+  "permissions": [
+    // Google MCP (garretpatten/google-mcp-server): allow reads, ask before writes.
+    { "action": "google_calendar_list", "resource": "*", "effect": "allow" },
+    { "action": "google_calendar_events", "resource": "*", "effect": "allow" },
+    { "action": "google_calendar_event", "resource": "*", "effect": "allow" },
+    { "action": "google_tasks_lists", "resource": "*", "effect": "allow" },
+    { "action": "google_tasks_list_tasks", "resource": "*", "effect": "allow" },
+    { "action": "google_calendar_create_event", "resource": "*", "effect": "ask" },
+    { "action": "google_calendar_update_event", "resource": "*", "effect": "ask" },
+    { "action": "google_calendar_delete_event", "resource": "*", "effect": "ask" },
+    { "action": "google_calendar_respond", "resource": "*", "effect": "ask" },
+    { "action": "google_tasks_create", "resource": "*", "effect": "ask" },
+    { "action": "google_tasks_update", "resource": "*", "effect": "ask" },
+    { "action": "google_tasks_complete", "resource": "*", "effect": "ask" },
+    { "action": "google_tasks_move", "resource": "*", "effect": "ask" },
+    { "action": "google_tasks_delete", "resource": "*", "effect": "ask" },
+  ],
   "permission": {
     "bash": {
       "*": "allow",
