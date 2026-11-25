@@ -102,6 +102,8 @@ Contribution and automation notes for agents live in [`AGENTS.md`](./AGENTS.md).
 ### Other
 
 - **Taskwarrior** — `taskwarrior/` (includes a themes submodule)
+- **OpenCode** — `config/opencode/` (AI agent config; Google Workspace MCP setup
+  in [docs/opencode/README.md](./docs/opencode/README.md))
 
 ## Usage
 
