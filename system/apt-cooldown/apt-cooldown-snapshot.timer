@@ -1,0 +1,11 @@
+[Unit]
+Description=Daily roll of the apt 7-day cooldown snapshot
+
+[Timer]
+OnCalendar=*-*-* 04:45:00
+RandomizedDelaySec=15min
+Persistent=true
+Unit=apt-cooldown-snapshot.service
+
+[Install]
+WantedBy=timers.target

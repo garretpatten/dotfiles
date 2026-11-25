@@ -1,0 +1,9 @@
+[Unit]
+Description=Roll apt snapshot forward (7-day package cooldown)
+Documentation=https://snapshot.ubuntu.com/
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/apt-cooldown-snapshot

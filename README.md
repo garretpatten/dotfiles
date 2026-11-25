@@ -24,7 +24,11 @@ Automation can copy or symlink entire trees without per-file mapping:
 - **`home/`** — Dotfiles meant for the home directory (e.g. `.zshrc`,
   `.bashrc`, `.tmux.conf`, `.vimrc`). Tmux 3.1+ can use
   `~/.config/tmux/tmux.conf`; this repo still ships **`~/.tmux.conf`** for
-  broad compatibility.
+  broad compatibility. Link `home/.cargo/config.toml` per file — never the
+  whole `.cargo` tree, which rustup owns.
+- **`system/`** — Root-owned system configuration applied by provisioning
+  scripts in the parent repositories (currently the apt snapshot cooldown
+  kit, [system/apt-cooldown](./system/apt-cooldown/README.md)).
 
 ### XDG directories
 
