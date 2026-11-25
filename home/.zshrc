@@ -86,7 +86,7 @@ export PATH="$HOME/.local/bin:$PATH"
 # Development
 alias acp='git add . && git commit -m "chore: make some updates" && git push origin'
 alias sub="git submodule init && git submodule update --remote --recursive"
-alias ups="git submodule update --remote --recursive && git add . && git commit -m 'Update submodules' && git push origin"
+alias ups="git submodule update --remote --recursive && git add \$(git config --file .gitmodules --get-regexp '^submodule\..*\.path$' | cut -d ' ' -f 2-) && git commit -m 'Update submodules' && git push origin"
 #
 # System
 alias cbg='bash "$HOME/Projects/system-scripts/code-backup/code-backup-gitlab.sh"'
