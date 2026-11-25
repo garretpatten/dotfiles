@@ -34,8 +34,8 @@
         "type": "remote",
         "url": "https://calendarmcp.googleapis.com/mcp/v1",
         "oauth": {
-          "client_id": "YOUR_GOOGLE_CLIENT_ID",
-          "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+          "client_id": "{env:GOOGLE_OAUTH_CLIENT_ID}",
+          "client_secret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
           "scope": "https://www.googleapis.com/auth/calendar.calendarlist.readonly https://www.googleapis.com/auth/calendar.events.freebusy https://www.googleapis.com/auth/calendar.events.readonly https://www.googleapis.com/auth/calendar.events offline_access",
           "redirect_uri": "http://127.0.0.1:19876/callback",
           "callback_port": 19876,
@@ -50,8 +50,8 @@
         "type": "remote",
         "url": "https://people.googleapis.com/mcp/v1",
         "oauth": {
-          "client_id": "YOUR_GOOGLE_CLIENT_ID",
-          "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+          "client_id": "{env:GOOGLE_OAUTH_CLIENT_ID}",
+          "client_secret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
           "scope": "https://www.googleapis.com/auth/directory.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/contacts.readonly offline_access",
           "redirect_uri": "http://127.0.0.1:19876/callback",
           "callback_port": 19876,
@@ -61,8 +61,8 @@
         "type": "remote",
         "url": "https://tasksmcp.googleapis.com/mcp/v1",
         "oauth": {
-          "client_id": "YOUR_GOOGLE_CLIENT_ID",
-          "client_secret": "YOUR_GOOGLE_CLIENT_SECRET",
+          "client_id": "{env:GOOGLE_OAUTH_CLIENT_ID}",
+          "client_secret": "{env:GOOGLE_OAUTH_CLIENT_SECRET}",
           "scope": "https://www.googleapis.com/auth/tasks.readonly https://www.googleapis.com/auth/tasks offline_access",
           "redirect_uri": "http://127.0.0.1:19876/callback",
           "callback_port": 19876,
