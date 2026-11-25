@@ -1,0 +1,21 @@
+#!/bin/sh
+# Rolling 7-day package cooldown for apt, via the official Ubuntu Snapshot Service.
+# Rewrites the global APT::Snapshot id to "now - 7 days" and refreshes indexes,
+# so apt / apt-get / unattended-upgrades only ever see packages that were in
+# the Ubuntu archive at least 7 days ago. Repos without snapshot support
+# (third-party vendor repos, ESM) are unaffected and remain live.
+
+set -eu
+
+LAG_DAYS=7
+SNAP_ID="$(date -u -d "$LAG_DAYS days ago" '+%Y%m%dT120000Z')"
+CONF="/etc/apt/apt.conf.d/99-cooldown-snapshot"
+
+printf 'APT::Snapshot "%s";\n' "$SNAP_ID" >"${CONF}.tmp.$$"
+chown root:root "${CONF}.tmp.$$"
+chmod 644 "${CONF}.tmp.$$"
+mv "${CONF}.tmp.$$" "$CONF"
+
+# Refresh indexes from the lagged snapshot. Tolerate brief lock contention
+# from other apt timers.
+apt-get -o DPkg::Lock::Timeout=300 update

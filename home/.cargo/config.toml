@@ -1,0 +1,4 @@
+[registry]
+# Supply-chain cooldown: ignore crate versions published less than 7 days ago.
+# Requires cargo 1.100+. Exceptions: CARGO_RESOLVER_INCOMPATIBLE_PUBLISH_AGE=allow
+global-min-publish-age = "7 days"
