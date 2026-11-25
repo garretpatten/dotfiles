@@ -5,7 +5,7 @@ vim.api.nvim_create_autocmd("FileType", {
     vim.opt_local.spell = true
   end,
 })
-vim.opt.colorcolumn = "80"
+-- vim.opt.colorcolumn = "80"
 vim.opt.cursorline = true
 vim.opt.foldenable = true
 vim.opt.guifont = "Fira Code:h12"
