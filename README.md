@@ -103,7 +103,12 @@ Contribution and automation notes for agents live in [`AGENTS.md`](./AGENTS.md).
 
 - **Taskwarrior** — `taskwarrior/` (includes a themes submodule)
 - **OpenCode** — `config/opencode/` (AI agent config; Google Workspace MCP setup
-  in [docs/opencode/README.md](./docs/opencode/README.md))
+  in [docs/opencode/README.md](./docs/opencode/README.md)). Global skills live in
+  `config/opencode/skills/` (`github-audit`, `resolve-issue`, and the pinned
+  [obsidian-skills] submodule). Update submodules (including the skills) with
+  `git submodule update --remote --recursive`, then commit the bumped pointers.
+
+[obsidian-skills]: https://github.com/obsidianmd/obsidian-skills
 
 ## Usage
 
